@@ -1,0 +1,65 @@
+////
+/// Typography settings.
+///
+/// @group  Settings
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://dkjensen.com/themes/genesis-starter-theme
+////
+
+// Font sizes
+$base--font-size: 1.6rem;
+
+$font-size--h1: 3.875em;
+$font-size--h2: 2.625em;
+$font-size--h3: 1.875em;
+$font-size--h4: 1.5em;
+$font-size--h5: 1.125em;
+$font-size--h6: 1em;
+
+$font-size--extra-small: 1.2rem;
+$font-size--small: 1.4rem;
+$font-size--medium: 1.8rem;
+
+$font-sizes: (
+	h1: $font-size--h1,
+	h2: $font-size--h2,
+	h3: $font-size--h3,
+	h4: $font-size--h4,
+	h5: $font-size--h5,
+	h6: $font-size--h6,
+	"medium": $font-size--medium,
+);
+
+// Font families
+$base--font-family: join(("Source Sans Pro"), $font-stack-system);
+
+$font-family--heading: $base--font-family;
+$font-family--code: $font-stack-consolas;
+
+// Font weights
+$font-weight--extralight: 200;
+$font-weight--light: 300;
+$font-weight--regular: 400;
+$font-weight--medium: 500;
+$font-weight--semibold: 600;
+$font-weight--bold: 700;
+
+$base--font-weight: $font-weight--regular;
+$font-weight--heading: $font-weight--semibold;
+
+// Line height
+$base--line-height: modular-scale(0, $golden);
+
+$line-height--heading: modular-scale(-1, $golden);
+
+@font-face {
+	font-family: "ApercuBold";
+	src:
+		url("../fonts/Apercu-Bold.woff") format("woff"),
+		url("../fonts/ApercuBold.woff2") format("woff2"),
+		url("../fonts/Apercu-Bold.svg#Apercu-Bold") format("svg"),
+		url("../fonts/Apercu-Bold.ttf") format("truetype"),
+		url("../fonts/ApercuBold.eot");
+	font-weight: $font-weight--bold;
+	font-style: normal;
+}

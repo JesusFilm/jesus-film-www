@@ -1,0 +1,132 @@
+////
+/// Header search component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.header-search {
+	display: flex;
+	overflow: hidden;
+	position: absolute;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	width: 100%;
+	max-width: 100%;
+	height: 8rem;
+	padding: 0.25rem $gutter 0;
+	background-color: $color--white;
+	animation: slideup 0.7s ease-out;
+	animation-fill-mode: forwards;
+	align-items: center;
+
+	@include mq(m) {
+		left: calc(50vw - #{ $mq-xs / 2 });
+		width: calc(100% - #{ $gutter * 2 });
+		max-width: $mq-xs;
+		padding: 0.25rem 0 0;
+	}
+
+	@include mq(xl) {
+		left: calc(50vw - #{ calc(#{ $mq-m } - #{ $gutter * 4 }) / 2 });
+		max-width: calc(#{ $mq-m } - #{ $gutter * 4 });
+	}
+
+	&.hidden {
+		display: none;
+	}
+
+	&[aria-expanded="true"] {
+		animation: slidedown 0.7s ease-out;
+		animation-fill-mode: forwards;
+	}
+
+	&-toggle {
+		display: inline-flex;
+		margin: 0 $gutter;
+		color: $color--gray-700;
+		font-size: 15.4px;
+		align-items: center;
+
+		@include hover-focus {
+			opacity: 0.5;
+			color: $color--gray-700;
+		}
+
+		@include mq($until: m) {
+			display: none;
+		}
+	}
+
+	&-close {
+		display: inline-flex;
+		width: 4rem;
+		height: 4rem;
+		margin: 0 0 0 $gutter;
+		cursor: pointer;
+		align-items: center;
+		justify-content: center;
+
+		> span {
+			position: relative;
+			top: auto;
+			right: auto;
+			bottom: auto;
+			background-color: transparent;
+
+			&,
+			&:before,
+			&:after {
+				display: block;
+				width: $spacing--m * $perfect-fifth;
+				height: 3px;
+				content: "";
+
+				@include transition();
+			}
+
+			&:before {
+				position: absolute;
+				top: 0;
+				background-color: $color--gray-500;
+				transform: rotate(45deg);
+			}
+
+			&:after {
+				position: absolute;
+				bottom: 0;
+				background-color: $color--gray-500;
+				transform: rotate(-45deg);
+			}
+		}
+
+		@include hover-focus {
+
+			> span:before,
+			> span:after {
+				background-color: $color--gray-800;
+			}
+		}
+	}
+
+	&-responsive-toggle {
+		cursor: pointer;
+
+		@include transition();
+
+		@include hover-focus {
+			opacity: 0.5;
+			color: $color--gray-700;
+		}
+
+		@include mq(m) {
+			display: none;
+		}
+	}
+
+	.search-form {
+		width: 100%;
+	}
+}

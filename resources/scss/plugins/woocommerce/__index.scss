@@ -1,0 +1,20 @@
+////
+/// WooCommerce specific styles.
+///
+/// @group  Vendor
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+// Abstracts
+@import "../../../../node_modules/bourbon/core/bourbon";
+@import "../../settings/_index";
+@import "../../tools/_index";
+
+// WooCommerce
+@import "globals";
+@import "shop-page";
+@import "product";
+@import "checkout";
+@import "cart-page";
+@import "account-page";

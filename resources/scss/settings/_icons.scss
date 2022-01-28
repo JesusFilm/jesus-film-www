@@ -1,0 +1,174 @@
+////
+/// Icons.
+///
+/// @group  Settings
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://dkjensen.com/themes/genesis-starter-theme
+////
+
+@font-face {
+	font-family: "jfm";
+	src: url("../fonts/jfm.eot");
+	src:
+		url("../fonts/jfm.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/jfm.svg#jfm") format("svg"),
+		url("../fonts/jfm.ttf") format("truetype"),
+		url("../fonts/jfm.woff") format("woff"),
+		url("../fonts/jfm.woff2") format("woff2");
+	font-weight: $font-weight--regular;
+	font-style: normal;
+}
+
+[class*=" icon-"]:before,[class^="icon-"]:before {
+	display: inline-block;
+	width: 1em;
+	margin-right: 0.2em;
+	margin-left: 0.2em;
+	font-family: "jfm";
+	font-weight: 400;
+	font-style: normal;
+	font-variant: normal;
+	line-height: 1;
+	text-align: center;
+	text-decoration: inherit;
+	text-transform: none;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-add:before {
+	content: "\e800";
+}
+
+.icon-book:before {
+	content: "\e801";
+}
+
+.icon-chevron-left:before {
+	content: "\e802";
+}
+
+.icon-camera-alt:before {
+	content: "\e803";
+}
+
+.icon-chevron-right:before {
+	content: "\e804";
+}
+
+.icon-clear:before {
+	content: "\e805";
+}
+
+.icon-drive-pdf:before {
+	content: "\e806";
+}
+
+.icon-expand-less:before {
+	content: "\e807";
+}
+
+.icon-expand-more:before {
+	content: "\e808";
+}
+
+.icon-facebook-icon:before {
+	content: "\e809";
+}
+
+.icon-favorite-outline:before {
+	content: "\e80a";
+}
+
+.icon-favorite:before {
+	content: "\e80b";
+}
+
+.icon-file-download:before {
+	content: "\e80c";
+}
+
+.icon-fullscreen-exit:before {
+	content: "\e80d";
+}
+
+.icon-fullscreen:before {
+	content: "\e80e";
+}
+
+.icon-logo:before {
+	content: "\e80f";
+}
+
+.icon-movie:before {
+	content: "\e810";
+}
+
+.icon-pause-icon:before {
+	content: "\e811";
+}
+
+.icon-place:before {
+	content: "\e812";
+}
+
+.icon-post-facebook:before {
+	content: "\e813";
+}
+
+.icon-post-gplus:before {
+	content: "\e814";
+}
+
+.icon-post-instagram:before {
+	content: "\e815";
+}
+
+.icon-post-twitter:before {
+	content: "\e816";
+}
+
+.icon-rss-icon:before {
+	content: "\e817";
+}
+
+.icon-share:before {
+	content: "\e818";
+}
+
+.icon-twitter-icon:before {
+	content: "\e819";
+}
+
+.icon-volume-up:before {
+	content: "\e81a";
+}
+
+.icon-search:before {
+	content: "\e81b";
+}
+
+.icon-menu:before {
+	content: "\e81c";
+}
+
+.icon-play-circled2:before {
+	content: "\e81d";
+}
+
+.icon-mail:before {
+	content: "\e81e";
+}
+
+.icon-code:before {
+	content: "\e81f";
+}
+
+.icon-icon-apple:before {
+	content: "\e820";
+}
+
+.icon-icon-android-1:before {
+	content: "\e821";
+}

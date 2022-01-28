@@ -1,0 +1,40 @@
+////
+/// Accessibility classes.
+///
+/// @group  Utilities
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.screen-reader-shortcut,
+.screen-reader-text,
+.screen-reader-text span {
+
+	@include hide-visually;
+
+	&:active,
+	&:focus {
+
+		@include hide-visually(unhide);
+
+		position: absolute;
+		padding: $spacing--s;
+		color: $color--white;
+		background-color: $color--muted;
+		text-decoration: none;
+	}
+}
+
+.more-link {
+	position: relative;
+}
+
+.genesis-skip-link {
+	margin: 0;
+
+	li {
+		width: 0;
+		height: 0;
+		list-style: none;
+	}
+}

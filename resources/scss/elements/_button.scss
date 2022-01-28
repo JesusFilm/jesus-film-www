@@ -1,0 +1,12 @@
+////
+/// Button.
+///
+/// @group  Base
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+#{$all-buttons} {
+
+	@include button;
+}

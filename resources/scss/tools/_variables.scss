@@ -1,0 +1,37 @@
+////
+/// Custom variables.
+///
+/// @group  Tools
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+////
+/// Buttons map.
+///
+/// Adds to Bourbon buttons list.
+///
+/// @group  Tools
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+$all-buttons: append($all-buttons, ".button");
+$all-buttons: append($all-buttons, ".button.menu-item a");
+
+////
+/// Headings map
+///
+/// @group  Tools
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+$all-headings: (
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+);

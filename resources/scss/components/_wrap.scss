@@ -1,0 +1,23 @@
+////
+/// Wrap component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.wrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: calc(100% - #{$gutter * 2});
+	max-width: $layout--width;
+
+	@include margin(null auto);
+
+	// Sub wrap.
+	.wrap {
+		width: 100%;
+		max-width: 100%;
+	}
+}

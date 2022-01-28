@@ -1,0 +1,66 @@
+////
+/// Content component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.content {
+	width: 100%;
+
+	.content-sidebar &,
+	.sidebar-content & {
+
+		@include mq(m) {
+			width: $layout--width--content;
+			max-width: $layout--max-width--content;
+		}
+	}
+
+	.narrow-content & {
+
+		@include mq(m) {
+			width: $layout--width--content-narrow;
+		}
+	}
+
+	.sidebar-content & {
+
+		@include mq(m) {
+			order: 1;
+		}
+	}
+
+	.narrow-content & {
+
+		@include margin(null auto);
+	}
+
+	.full-width-content & {
+	}
+
+	.is-archive & {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		width: 100%;
+	}
+
+	.has-heading-block & {
+		margin: 0 auto;
+	}
+
+	.front-page & {
+		width: 100%;
+		margin: 0 auto;
+
+		@include mq(m) {
+			width: 100%;
+		}
+	}
+
+	.template-blocks & {
+		margin: 0 auto;
+	}
+}

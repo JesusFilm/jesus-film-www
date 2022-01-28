@@ -1,0 +1,23 @@
+////
+/// Transparent header component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.transparent-header {
+
+	.site-header {
+		position: absolute;
+		border-bottom: 1px solid transparent;
+		background-color: transparent;
+	}
+
+	.hero-section {
+
+		.wrap {
+			margin-top: $spacing--xxl;
+		}
+	}
+}

@@ -1,0 +1,28 @@
+////
+/// Sticky header component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.sticky-header {
+
+	.site-header {
+		position: fixed;
+
+		@include transition;
+
+		&.sticky {
+			border-bottom: $base--border;
+			background-color: $color--white;
+		}
+	}
+
+	.hero-section {
+
+		.wrap {
+			margin-top: $spacing--xxl;
+		}
+	}
+}

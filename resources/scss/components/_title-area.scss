@@ -1,0 +1,61 @@
+////
+/// Title area component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.title-area {
+	position: absolute;
+	left: 50%;
+	line-height: $line-height--heading;
+	transform: translateX(-50%);
+
+	@include mq(m) {
+		position: static;
+		left: auto;
+		transform: none;
+	}
+}
+
+// Site title.
+.site-title {
+	margin: 0;
+	font-size: 1em;
+	font-weight: $font-weight--semibold;
+
+	.wp-custom-logo & {
+
+		@include hide-visually;
+	}
+
+	a {
+		color: $color--text;
+
+		@include hover-focus {
+			color: $color--primary;
+		}
+	}
+}
+
+// Site description.
+.site-description {
+	margin: 0;
+	font-size: small;
+
+	.wp-custom-logo & {
+
+		@include hide-visually;
+	}
+}
+
+// Custom logo.
+.custom-logo {
+	width: 14rem;
+
+	&-link {
+		display: flex;
+		align-items: center;
+	}
+}

@@ -1,0 +1,67 @@
+////
+/// Nav Submenu component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.nav-submenu {
+	overflow: hidden;
+	position: relative;
+	height: 6rem;
+	background-color: $color--primary;
+
+	&:before,
+	&:after {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 3.1rem;
+		background: linear-gradient(to left, rgba($color--primary, 0) 0, rgba($color--primary, 0.6) 100%);
+		content: "";
+	}
+
+	&:after {
+		right: 0;
+		left: auto;
+		background: linear-gradient(to right, rgba($color--primary, 0) 0, rgba($color--primary, 0.6) 100%);
+	}
+
+	.menu {
+		display: flex;
+		overflow-x: scroll;
+		z-index: 10;
+		height: 8rem;
+		margin: 0;
+		padding: 2rem 0 0;
+		justify-content: flex-start;
+		align-items: flex-start;
+
+		@include mq(m) {
+			justify-content: center;
+		}
+
+		&-item {
+			margin: 0 $gutter;
+			padding: 0;
+			font-size: $base--font-size;
+			white-space: nowrap;
+
+			a {
+				color: $color--white;
+
+				@include hover-focus {
+					color: $color--white;
+				}
+			}
+
+			&.current-menu-item > a,
+			&.current-menu-ancestor > a {
+				font-weight: $font-weight--bold;
+				text-decoration: underline;
+			}
+		}
+	}
+}

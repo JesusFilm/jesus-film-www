@@ -1,0 +1,67 @@
+{
+  "name": "dkjensen/jesus-film-project",
+  "type": "wordpress-theme",
+  "description": "Default theme for jesusfilm.org",
+  "keywords": [
+    "WordPress",
+    "wordpress-theme-development",
+    "genesis-framework"
+  ],
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "David Jensen",
+      "homepage": "https://dkjensen.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/dkjensen/jesus-film-project/issues",
+    "source": "https://github.com/dkjensen/jesus-film-project"
+  },
+  "require": {
+    "php": ">=5.6"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/seothemes/genesis-config-exporter"
+    }
+  ],
+  "require-dev": {
+    "brain/monkey": "^2.2",
+    "dealerdirect/phpcodesniffer-composer-installer": "v0.7.1",
+    "phpcompatibility/phpcompatibility-wp": "2.1.1",
+    "phpunit/phpunit": "~5.7.9",
+    "seothemes/genesis-config-exporter": "@dev",
+    "squizlabs/php_codesniffer": "^3.6.0",
+    "wp-coding-standards/wpcs": "^2.3.0",
+    "wp-phpunit/wp-phpunit": "^5.7.2",
+    "php-stubs/woocommerce-stubs": "^5.3",
+    "automattic/vipwpcs": "^2.3"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SeoThemes\\JesusFilmProject\\Tests\\Unit\\": "tests/php/unit/",
+      "SeoThemes\\JesusFilmProject\\Tests\\Integration\\": "tests/php/integration/"
+    }
+  },
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-order": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "stylelint": [
+      "stylelint './resources/scss/**/*.scss' --fix"
+    ],
+    "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
+    "phpcs": "phpcs --standard=WordPress --extensions=php -p -s lib config templates tests functions.php",
+    "phpcbf": "phpcbf --standard=WordPress --extensions=php -p lib config templates tests functions.php",
+    "test-unit": "composer dump && \"vendor/bin/phpunit\" --testsuite unit --color=always",
+    "test-integration": "composer dump && \"vendor/bin/phpunit\" --testsuite integration --configuration tests/phpunit/integration/phpunit.xml.dist --color=always"
+  }
+}

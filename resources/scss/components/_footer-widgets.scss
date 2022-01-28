@@ -1,0 +1,29 @@
+////
+/// Footer widgets component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.footer-widgets {
+	padding: $spacing--xl 0;
+
+	> .wrap {
+		gap: $gutter;
+		justify-content: flex-start;
+	}
+}
+
+// Footer widget area.
+.footer-widget-area {
+
+	@include mq(m) {
+		flex: 1;
+
+		&:first-of-type {
+			flex: 0 1 calc(50% - #{ $gutter });
+			padding-right: 12rem;
+		}
+	}
+}

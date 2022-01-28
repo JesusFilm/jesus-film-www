@@ -1,0 +1,42 @@
+////
+/// Search form component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.search-form {
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	border-radius: $base--border--radius;
+
+	&-input {
+		margin: 0;
+	}
+
+	&-submit {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 6rem;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		border: none;
+		color: rgba($color--black, 0.8);
+		background: transparent;
+		box-shadow: none;
+		align-items: center;
+		justify-content: center;
+
+		@include hover-focus {
+			border: none;
+			color: rgba($color--black, 0.6);
+			background: transparent;
+			box-shadow: none;
+		}
+	}
+}

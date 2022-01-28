@@ -1,0 +1,19 @@
+////
+/// Widget component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.widget {
+	margin-bottom: $gutter;
+
+	// Widget wrapper.
+	&-wrap {}
+
+	// Widget title.
+	&-title {
+		font-size: $font-size--h5;
+	}
+}

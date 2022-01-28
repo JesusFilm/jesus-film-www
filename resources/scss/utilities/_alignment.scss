@@ -1,0 +1,73 @@
+////
+/// Alignment classes.
+///
+/// @group  Utilities
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.align {
+
+	&left {
+		float: left;
+		margin: 0 $spacing--m 0 0;
+	}
+
+	&right {
+		float: right;
+		margin: 0 0 $spacing--m 0;
+	}
+
+	&center {
+		margin: 0 auto;
+
+		@include clearfix;
+	}
+
+	&wide,
+	&full {
+		overflow: hidden;
+		position: relative;
+		left: 50%;
+		width: 100vw;
+
+		.content-sidebar &,
+		.sidebar-content & {
+			left: auto;
+			width: 100%;
+			max-width: 100%;
+			margin-left: 0;
+			transform: none;
+		}
+
+		> img {
+			display: inline-block;
+			width: 100%;
+			margin: $spacing--m auto;
+		}
+	}
+
+	&wide {
+		max-width: 120%;
+		transform: translate(-50%);
+
+		@include mq($until: xxxl) {
+			left: auto;
+			width: auto;
+			max-width: $layout--width;
+			transform: none;
+		}
+	}
+
+	&full {
+		max-width: none;
+		margin-left: -50vw;
+
+		> [class$="__inner-container"] {
+			width: calc(100% - #{$gutter * 2});
+			max-width: $layout--width;
+
+			@include margin(null auto);
+		}
+	}
+}

@@ -1,0 +1,12 @@
+# Ignore vendor directories.
+node_modules/*
+vendor/*
+
+# Ignore minified styles.
+*.min.css
+
+# Plugin styles.
+resources/scss/plugins
+
+# Editor styles.
+resources/scss/editor.scss

@@ -1,0 +1,16 @@
+{
+  "from": {
+    "Name": "Genesis Starter Theme",
+    "Description": "Genesis starter theme with a modern development workflow.",
+    "Uri": "https://dkjensen.com/",
+    "Author": "David Jensen",
+    "AuthorUri": "https://dkjensen.com/"
+  },
+  "to": {
+    "Name": "Jesus Film Project",
+    "Description": "Default theme for jesusfilm.org",
+    "Uri": "https://dkjensen.com/",
+    "Author": "David Jensen",
+    "AuthorUri": "https://dkjensen.com/"
+  }
+}

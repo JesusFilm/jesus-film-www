@@ -1,0 +1,29 @@
+////
+/// Site header object.
+///
+/// @group  Objects
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.site-header {
+	position: relative;
+	z-index: 10;
+	background-color: $color--white;
+
+	.wrap {
+		display: flex;
+		width: calc(100% - #{$gutter} * 2);
+		max-width: $mq-s;
+		height: 8.5rem;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+
+		@include mq(m) {
+			width: 100%;
+			max-width: calc(100% - #{$gutter} * 2);
+			flex-wrap: nowrap;
+		}
+	}
+}

@@ -1,0 +1,137 @@
+////
+/// Entry component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.entry {
+
+	.featuredpost &,
+	.is-archive & {
+		margin-bottom: $gutter;
+		border: $base--border;
+		border-radius: $base--border--radius;
+		background-color: $color--white;
+
+		&:last-of-type {
+
+			@include mq($until: xs) {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Entry header.
+	&-header {
+
+		.is-single.page & {
+			margin-top: $spacing--xl;
+			text-align: center;
+		}
+	}
+
+	// Entry title.
+	&-title {
+
+		.is-archive & {
+			font-size: $font-size--h4;
+		}
+
+		a {
+			color: $color--text;
+
+			@include hover-focus {
+				color: $color--primary;
+			}
+		}
+	}
+
+	// Entry title link.
+	&-title-link {
+	}
+
+	// Entry time.
+	&-time {
+	}
+
+	// Entry author.
+	&-author {
+	}
+
+	// Entry author link.
+	&-author-link {
+	}
+
+	// Entry author name.
+	&-author-name {
+	}
+
+	// Entry comments link
+	&-comments-link {
+	}
+
+	// Entry meta.
+	&-meta {
+		font-size: smaller;
+	}
+
+	// Entry image link.
+	&-image-link {
+		display: block;
+
+		img {
+			min-width: 100%;
+			border-radius: $base--border--radius $base--border--radius 0 0;
+		}
+	}
+
+	// Entry content.
+	&-content {
+
+		p,
+		pre {
+
+			.single & {
+				margin-bottom: 3.6rem;
+				color: rgba($color--black, 0.8);
+				font-size: $font-size--medium;
+				line-height: 1.67;
+				letter-spacing: -0.2px;
+			}
+
+			&:last-of-type {
+
+			}
+		}
+	}
+
+	// Entry footer.
+	&-footer {
+
+		p {
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Entry categories.
+	&-categories {
+	}
+
+	// Entry tags.
+	&-tags {
+	}
+
+	// Entry wrap.
+	&-wrap {
+		padding: $gap;
+	}
+}
+
+// More link.
+.more-link {
+}

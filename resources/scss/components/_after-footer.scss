@@ -1,0 +1,34 @@
+////
+/// After footer component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.after-footer {
+	padding: $spacing--xl 0 $spacing--xl - $gutter;
+	border-top: $base--border;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			color: rgba($color--black, 0.6);
+			font-size: 1.5rem;
+			line-height: 2.3;
+
+			a {
+				color: rgba($color--black, 0.6);
+				line-height: 0.73;
+				text-decoration: underline;
+
+				@include hover-focus {
+					color: $color--black;
+				}
+			}
+		}
+	}
+}

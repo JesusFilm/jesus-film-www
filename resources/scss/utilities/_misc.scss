@@ -1,0 +1,136 @@
+////
+/// Miscellaneous classes.
+///
+/// @group  Utilities
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+// Box
+.box {
+
+	@include box;
+}
+
+// Notice
+.notice {
+
+	@include notice();
+
+	&-success {
+
+		@include notice("success");
+	}
+
+	&-info {
+
+		@include notice("info");
+	}
+
+	&-warning {
+
+		@include notice("warning");
+	}
+
+	&-error {
+
+		@include notice("error");
+	}
+
+}
+
+// Palette
+.palette {
+	display: flex;
+	flex-wrap: wrap;
+
+	h5 {
+		width: 100%;
+	}
+
+	> div {
+		width: $one-half;
+		margin: 0 $gutter $gutter 0;
+		padding: $spacing--m 0;
+		border-radius: $base--border--radius;
+		color: $color--white;
+		font-size: smaller;
+		font-weight: $font-weight--heading;
+		text-align: center;
+
+		&:nth-of-type(even) {
+			margin-right: 0;
+		}
+
+		@include mq(xs) {
+			width: $one-fifth;
+			padding: $gap 0;
+
+			&:nth-of-type(even) {
+				margin-right: $gutter;
+			}
+
+			&:nth-of-type(5n) {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+// Card
+.card {
+
+	@include card();
+}
+
+// Subheading
+.subheading {
+	color: rgba($color--black, 0.4);
+	font-size: 1.2rem;
+	font-weight: $font-weight--regular;
+	line-height: 2;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+// More text
+.more-text {
+	display: inline-flex;
+	height: 4rem;
+	padding: 0;
+	border-bottom: 1px solid $color--black;
+	color: $color--black;
+	font-size: 1.3rem;
+	font-weight: $font-weight--regular;
+	line-height: 1;
+	text-decoration: none;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	align-items: center;
+
+	@include hover-focus {
+		border-color: rgba($color--black, 0.6);
+		opacity: 0.6;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	&:after {
+		margin-left: 5px;
+
+		@include icon("\f30b", 700);
+	}
+}
+
+// Give button
+.give-button {
+	border-color: $color--primary;
+	background-color: $color--primary;
+	background-image: $gradient--primary;
+
+	@include hover-focus {
+		border-color: $color--primary;
+		background: $color--primary;
+		box-shadow: inset 0 1px 3px 0 rgba($color--primary, 0.25);
+	}
+}

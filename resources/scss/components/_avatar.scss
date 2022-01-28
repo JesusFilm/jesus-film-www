@@ -1,0 +1,13 @@
+////
+/// Avatar component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.avatar {
+	float: left;
+	margin-right: $spacing--m;
+	border-radius: $base--border--radius;
+}

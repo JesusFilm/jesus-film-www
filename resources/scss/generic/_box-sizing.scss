@@ -1,0 +1,38 @@
+////
+/// Box Sizing.
+///
+/// @group  Generic
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+:root {
+	text-rendering: optimizeLegibility;
+}
+
+html {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	box-sizing: border-box;
+	max-width: 100vw;
+	height: 100%;
+	font-size: 62.5%; // 10px browser default
+	text-rendering: optimizeLegibility;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+
+	&.admin-bar-showing {
+		height: calc(100% - 32px);
+	}
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+p:empty {
+	display: none;
+}
