@@ -31,4 +31,11 @@
 			}
 		}
 	}
+
+	.wrap {
+
+		@include mq($until: m) {
+			flex-direction: column;
+		}
+	}
 }

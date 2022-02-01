@@ -32,24 +32,13 @@ return array(
 			},
 		),
 		array(
-			'handle' => \genesis_get_theme_handle() . '-main',
-			'src'    => $genesis_asset_url . 'css/main.css',
-		),
-		array(
-			'handle'    => \genesis_get_theme_handle() . '-woocommerce',
-			'src'       => $genesis_asset_url . 'css/woocommerce.css',
-			'condition' => function () {
-				return \class_exists( 'WooCommerce' );
-			},
-		),
-		array(
 			'handle' => \genesis_get_theme_handle() . '-google-fonts',
 			'src'    => "//fonts.googleapis.com/css?family=$genesis_google_fonts&display=swap",
 			'editor' => 'both',
 		),
 		array(
 			'handle' => \genesis_get_theme_handle() . '-font-awesome',
-			'src'    => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css',
+			'src'    => '//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css',
 		),
 	),
 	'remove' => array(),

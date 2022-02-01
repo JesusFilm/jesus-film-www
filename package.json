@@ -7,7 +7,8 @@
     "url": "https://github.com/dkjensen/jesus-film-project.git"
   },
   "author": "David Jensen",
-  "license": "GPL-3.0",
+  "license": "UNLICENSED",
+  "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
     "@commitlint/cli": "^12.1.4",
@@ -31,8 +32,11 @@
     "imagemin-webpack-plugin": "^2.4.0",
     "laravel-mix": "^6.0.19",
     "laravel-mix-svg-sprite": "^1.0.2",
+    "lodash": "^4.17.21",
     "node-wp-i18n": "^1.2.5",
+    "postcss-convert-rem-to-pixel": "^0.0.0",
     "postcss-preset-env": "^5.3.0",
+    "prepend-file": "^2.0.1",
     "prettier": "^2.3.0",
     "prettier-stylelint": "^0.4.2",
     "react": "^17.0.2",
@@ -53,7 +57,6 @@
     "name": "Jesus Film Project",
     "uri": "https://dkjensen.com/",
     "authoruri": "https://dkjensen.com/",
-    "licenseuri": "http://www.gnu.org/licenses/gpl-3.0.html",
     "domainpath": "/assets/lang",
     "textdomain": "jesus-film-project",
     "template": "genesis"

@@ -8,7 +8,7 @@ module.exports = {
         '@wordpress/stylelint-config/scss'
     ],
     plugins: 'stylelint-order',
-    ignoreFiles: ['style.min.css', '**/*.js', '**/*.php'],
+    ignoreFiles: ['style.min.css', '**/*.js', '**/*.php','LICENSE'],
     rules: {
         'block-no-empty': null,
         'font-family-no-missing-generic-family-keyword': null,

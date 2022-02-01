@@ -1,9 +1,11 @@
 const { registerBlockType } = wp.blocks;
 
 import * as card from './card';
+import * as moreLink from './more-link';
 
 const blocks = [
 	card,
+	moreLink,
 ];
 
 const registerBlock = ( block ) => {

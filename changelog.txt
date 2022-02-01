@@ -1,6 +1,0 @@
-# [3.6.0](https://github.com/dkjensen/jesus-film-project/compare/3.5.3...3.6.0) (2021-10-08)
-
-
-### Features
-
-* misc changes ([1b9cd64](https://github.com/dkjensen/jesus-film-project/commit/1b9cd64ac0d78f86f34585308cb0b879b3681812))

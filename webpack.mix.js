@@ -13,8 +13,8 @@ const mix = require('laravel-mix');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
-const fs = require('fs');
 const packageJson = require('./package.json');
+const prependFile = require('prepend-file');
 
 require('laravel-mix-svg-sprite');
 
@@ -114,44 +114,41 @@ var sassConfig = { sassOptions: {
 
 // Compile SASS/CSS.
 mix
-    .sass(`${devPath}/scss/main.scss`, `${distPath}/css`, sassConfig).options({
-    postCss: [
-        require('cssnano')({
-            preset: ['default', {
-                discardComments: {
-                    removeAll: true,
-                },
-            }]
-        })
-    ]
-})
-    .sass(`${devPath}/scss/editor.scss`, `${distPath}/css`, sassConfig)
+    .sass(`${devPath}/scss/main.scss`, `./style.css`, sassConfig).options({
+        postCss: [
+            require('cssnano')({
+                preset: ['default', {
+                    discardComments: {
+                        removeAll: true,
+                    },
+                }]
+            })
+        ]
+    }).then( async (stats) => {
+        // Generate blank stylesheet.
+        const banner = [
+            '/*',
+            ' * Theme Name: ' + packageJson.theme.name,
+            ' * Theme URI: ' + packageJson.theme.uri,
+            ' * Author: ' + packageJson.author,
+            ' * Author URI: ' + packageJson.theme.authoruri,
+            ' * Description: ' + packageJson.description,
+            ' * Version: ' + packageJson.version,
+            ' * License: ' + packageJson.license,
+            ' * Text Domain: ' + packageJson.name,
+            ' * Domain Path: ' + packageJson.theme.domainpath,
+            ' * Template: ' + packageJson.theme.template,
+            ' */\n\n',
+        ].join('\n');
+
+        await prependFile('style.css', banner);
+
+        console.log('\x1b[34m', '\nstyle.css banner generated.');
+    })
+    .sass(`${devPath}/scss/editor.scss`, `${distPath}/css`, sassConfig, [
+        require('postcss-convert-rem-to-pixel')
+    ])
     .sass(`${devPath}/scss/plugins/woocommerce/__index.scss`, `${distPath}/css/woocommerce.css`, sassConfig);
-
-// Generate blank stylesheet.
-const banner = [
-    '/*',
-    ' * Theme Name: ' + packageJson.theme.name,
-    ' * Theme URI: ' + packageJson.theme.uri,
-    ' * Author: ' + packageJson.author,
-    ' * Author URI: ' + packageJson.theme.authoruri,
-    ' * Description: ' + packageJson.description,
-    ' * Version: ' + packageJson.version,
-    ' * License: ' + packageJson.license,
-    ' * License URI: ' + packageJson.theme.licenseuri,
-    ' * Text Domain: ' + packageJson.name,
-    ' * Domain Path: ' + packageJson.theme.domainpath,
-    ' * Template: ' + packageJson.theme.template,
-    ' */\n',
-].join('\n');
-
-fs.writeFile('style.css', banner, function (err) {
-    if (err) {
-        return console.log(err);
-    }
-
-    console.log('\x1b[34m', '\nstyle.css banner generated.');
-});
 
 /*
  * Create SVG sprite.
@@ -226,6 +223,7 @@ if (process.env.sync) {
         },
         files: [
             'assets/css/*',
+            'assets/js/*',
             'config/*.php',
             'lib/**/*.php',
             'templates/*.php',

@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "jf/more-link",
+	"title": "More Link",
+	"category": "text",
+	"description": "More link block.",
+	"keywords": [ "link", "anchor", "read", "more" ],
+	"textdomain": "default",
+	"attributes": {
+		"textAlign": {
+			"type": "string"
+		},
+		"content": {
+			"type": "string",
+			"source": "html",
+			"default": "",
+			"__experimentalRole": "content"
+		},
+		"placeholder": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"anchor": false,
+		"className": false,
+		"color": {
+			"link": true
+		},
+		"spacing": {
+			"margin": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true,
+				"fontAppearance": true,
+				"textTransform": true
+			}
+		},
+		"__experimentalSelector": "span",
+		"__unstablePasteTextInline": true,
+		"__experimentalSlashInserter": true
+	}
+}

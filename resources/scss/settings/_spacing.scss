@@ -19,6 +19,7 @@ $spacing--xxl: $base--font-size * 5;
 $spacing--xxxl: $base--font-size * 8;
 
 $spacing: (
+	0: 0,
 	xxxs: $spacing--xxxs,
 	xxs: $spacing--xxs,
 	xs: $spacing--xs,

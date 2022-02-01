@@ -1,5 +1,54 @@
+import classnames from 'classnames';
+
+const { RichText, useBlockProps, useInnerBlocksProps, InnerBlocks } = wp.blockEditor;
+
 export default function save( { attributes } ) {
+	const {
+		url,
+		alt,
+		caption,
+		href,
+		linkClass,
+		noMedia,
+	} = attributes;
+
+	const classes = classnames( {}, 'wp-block-card' );
+
+	const image = (
+		<img
+			src={ url }
+			alt={ alt }
+		/>
+	);
+
+	const figure = (
+		<>
+			{ href ? (
+				<a
+					className={ linkClass }
+					href={ href }
+				>
+					{ image }
+				</a>
+			) : (
+				image
+			) }
+			{ ! RichText.isEmpty( caption ) && (
+				<RichText.Content tagName="figcaption" value={ caption } />
+			) }
+		</>
+	);
+
 	return (
-		<div>test</div>
+		<div { ...useBlockProps.save( { className: classes } ) }>
+			{ ( ! noMedia && url ) && (
+				<div className="wp-block-card-media">
+					{ figure }
+				</div>
+			) }
+			<div className="wp-block-card-bottom">
+				<InnerBlocks.Content />
+			</div>
+		</div>
 	);
 }

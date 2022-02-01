@@ -1,30 +1,99 @@
 import classNames from 'classnames';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import pick from 'lodash/pick';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
+
+// import useDimensionHandler from './use-dimension-handler';
 
 const { __ } = wp.i18n;
-const { getBlobByURL, isBlobURL } = wp.blob;
-const { InnerBlocks, useBlockProps, MediaPlaceholder, store } = wp.blockEditor;
+const { getBlobByURL, isBlobURL, revokeBlobURL } = wp.blob;
+const { BlockControls, MediaReplaceFlow, InnerBlocks, useBlockProps, AlignmentControl, InspectorControls, MediaPlaceholder, store, __experimentalImageSizeControl: ImageSizeControl } = wp.blockEditor;
+const { PanelBody, Toolbar, ToolbarGroup, ToolbarButton } = wp.components;
 const { Image } = wp.blockLibrary;
+const { store: coreStore } = wp.coreData;
 const { useSelect } = wp.data;
-const { useEffect } = wp.element;
+const { useEffect, createRef, useRef, useState } = wp.element;
 
+export const pickRelevantMediaFiles = ( image, size ) => {
+	const imageProps = pick( image, [ 'alt', 'id', 'link', 'caption' ] );
+	imageProps.url =
+		get( image, [ 'sizes', size, 'url' ] ) ||
+		get( image, [ 'media_details', 'sizes', size, 'source_url' ] ) ||
+		image.url;
+	return imageProps;
+};
+
+/**
+ * Is the URL a temporary blob URL? A blob URL is one that is used temporarily
+ * while the image is being uploaded and will not have an id yet allocated.
+ *
+ * @param {number=} id  The id of the image.
+ * @param {string=} url The url of the image.
+ *
+ * @return {boolean} Is the URL a Blob URL
+ */
+const isTemporaryImage = ( id, url ) => ! id && isBlobURL( url );
+
+/**
+ * Is the url for the image hosted externally. An externally hosted image has no
+ * id and is not a blob url.
+ *
+ * @param {number=} id  The id of the image.
+ * @param {string=} url The url of the image.
+ *
+ * @return {boolean} Is the url an externally hosted url?
+ */
+export const isExternalImage = ( id, url ) => url && ! id && ! isBlobURL( url );
+
+/**
+ * Checks if WP generated default image size. Size generation is skipped
+ * when the image is smaller than the said size.
+ *
+ * @param {Object} image
+ * @param {string} defaultSize
+ *
+ * @return {boolean} Whether or not it has default image size.
+ */
+function hasDefaultSize( image, defaultSize ) {
+	return (
+		has( image, [ 'sizes', defaultSize, 'url' ] ) ||
+		has( image, [ 'media_details', 'sizes', defaultSize, 'source_url' ] )
+	);
+}
+
+/**
+ * Checks if a media attachment object has been "destroyed",
+ * that is, removed from the media library. The core Media Library
+ * adds a `destroyed` property to a deleted attachment object in the media collection.
+ *
+ * @param {number} id The attachment id.
+ *
+ * @return {boolean} Whether the image has been destroyed.
+ */
 export function isMediaDestroyed( id ) {
 	const attachment = wp?.media?.attachment( id ) || {};
 	return attachment.destroyed;
 }
 
-export default function edit( { attributes, setAttributes, className, isSelected, context } ) {
-	const { id, mediaAlt, url, mediaLink } = attributes;
-
-	const classes = classNames( className, 'wp-block-card' );
-
-	const blockProps = useBlockProps( {
-		className: classes,
-	} );
-
-	const mediaUpload = useSelect( ( select ) => {
+export default function edit( { attributes, setAttributes, className, insertBlocksAfter, onReplace, isSelected, context, clientId } ) {
+	const { id, mediaAlt, url, mediaLink, noMedia, width, height, align } = attributes;
+	const sizeSlug = attributes.sizeSlug || 'full';
+	const [ temporaryURL, setTemporaryURL ] = useState();
+	const { imageDefaultSize, mediaUpload } = useSelect( ( select ) => {
 		const { getSettings } = select( store );
-		return getSettings().mediaUpload;
+		return pick( getSettings(), [ 'imageDefaultSize', 'mediaUpload' ] );
 	}, [] );
+
+	const ref = useRef();
+
+	// const {
+	// 	currentHeight,
+	// 	currentWidth,
+	// 	updateDimension,
+	// 	updateDimensions,
+	// } = useDimensionHandler( height, width, imageHeight, imageWidth, onChange );
 
 	useEffect( () => {
 		if ( ! id && isBlobURL( url ) ) {
@@ -45,9 +114,11 @@ export default function edit( { attributes, setAttributes, className, isSelected
 		}
 	}, [] );
 
+	const editMediaButtonRef = createRef();
+
 	function onSelectURL( newSrc ) {
 		if ( newSrc !== url ) {
-			setAttributes( { src: newSrc, id: undefined } );
+			setAttributes( { src: newSrc, id: undefined, noMedia: false } );
 		}
 	}
 
@@ -63,9 +134,46 @@ export default function edit( { attributes, setAttributes, className, isSelected
 			return;
 		}
 
+		if ( isBlobURL( media.url ) ) {
+			setTemporaryURL( media.url );
+			return;
+		}
+
+		setTemporaryURL();
+
+		let additionalAttributes;
+		// Reset the dimension attributes if changing to a different image.
+		if ( ! media.id || media.id !== id ) {
+			additionalAttributes = {
+				width: undefined,
+				height: undefined,
+				// Fallback to size "full" if there's no default image size.
+				// It means the image is smaller, and the block will use a full-size URL.
+				sizeSlug: hasDefaultSize( media, imageDefaultSize )
+					? imageDefaultSize
+					: 'full',
+			};
+		} else {
+			// Keep the same url when selecting the same file, so "Image Size"
+			// option is not changed.
+			additionalAttributes = { url };
+		}
+
 		// sets the block's attribute and updates the edit component from the
 		// selected media, then switches off the editing UI
-		setAttributes( { url: media.url, id: media.id } );
+		setAttributes( { url: media.url, id: media.id, noMedia: false, ...additionalAttributes } );
+	}
+
+	function onSelectURL( newURL ) {
+		if ( newURL !== url ) {
+			setAttributes( {
+				url: newURL,
+				id: undefined,
+				width: undefined,
+				height: undefined,
+				sizeSlug: imageDefaultSize,
+			} );
+		}
 	}
 
 	function onCloseModal() {
@@ -88,29 +196,174 @@ export default function edit( { attributes, setAttributes, className, isSelected
 		}
 	}
 
-	return (
-		<div { ...blockProps }>
-			<div className="wp-block-card-media">
-				{ ( url ) && (
-					<img src={ url } />
-				) }
-				<MediaPlaceholder
-					labels={ {
-						title: '',
-						instructions: '',
+	function onRemoveImage() {
+		setAttributes( { url: undefined, id: undefined, noMedia: true } );
+	}
+
+	const image = useSelect(
+		( select ) =>
+			id && isSelected
+				? select( coreStore ).getMedia( id )
+				: null,
+		[ isSelected, id ],
+	);
+
+	const imageSizes = useSelect( ( select ) => {
+		const settings = select( store ).getSettings();
+		return settings?.imageSizes;
+	}, [] );
+
+	function getImageSourceUrlBySizeSlug( _image, slug ) {
+		// eslint-disable-next-line camelcase
+		return _image?.media_details?.sizes?.[ slug ]?.source_url;
+	}
+
+	const imageSizeOptions = map(
+		filter( imageSizes, ( { slug } ) =>
+			getImageSourceUrlBySizeSlug( image, slug ),
+		),
+		( { name, slug } ) => ( { value: slug, label: name } ),
+	);
+
+	const updateImage = ( newMediaSizeSlug ) => {
+		const newUrl = getImageSourceUrlBySizeSlug( image, newMediaSizeSlug );
+
+		if ( ! newUrl ) {
+			return null;
+		}
+
+		setAttributes( {
+			url: newUrl,
+			sizeSlug: newMediaSizeSlug,
+		} );
+	};
+
+	let isTemp = isTemporaryImage( id, url );
+
+	// Upload a temporary image on mount.
+	useEffect( () => {
+		if ( ! isTemp ) {
+			return;
+		}
+
+		const file = getBlobByURL( url );
+
+		if ( file ) {
+			mediaUpload( {
+				filesList: [ file ],
+				onFileChange: ( [ img ] ) => {
+					onSelectImage( img );
+				},
+				allowedTypes: [ 'image' ],
+				onError: ( message ) => {
+					isTemp = false;
+					setAttributes( {
+						src: undefined,
+						id: undefined,
+						url: undefined,
+					} );
+				},
+			} );
+		}
+	}, [] );
+
+	// If an image is temporary, revoke the Blob url when it is uploaded (and is
+	// no longer temporary).
+	useEffect( () => {
+		if ( isTemp ) {
+			setTemporaryURL( url );
+			return;
+		}
+		revokeBlobURL( temporaryURL );
+	}, [ isTemp, url ] );
+
+	const isExternal = isExternalImage( id, url );
+	const src = isExternal ? url : undefined;
+
+	const controls = (
+		<>
+			<BlockControls group="block">
+				<AlignmentControl
+					value={ align }
+					onChange={ ( nextAlign ) => {
+						setAttributes( { align: nextAlign } );
 					} }
-					onSelect={ onSelectImage }
-					onSelectURL={ onSelectURL }
-					accept="image/*"
-					allowedTypes={ [ 'image' ] }
-					value={ { id, url } }
-					onError={ onUploadError }
-					disableMediaButtons={ url }
 				/>
+				<ToolbarGroup>
+					{ ( ! noMedia ) && (
+						<ToolbarButton
+							onClick={ onRemoveImage }
+						>
+							{ __( 'Remove Image' ) }
+						</ToolbarButton>
+					) }
+					<MediaReplaceFlow
+						id={ id }
+						mediaURL={ url }
+						allowedTypes={ [ 'image' ] }
+						accept="image/*"
+						onSelect={ onSelectImage }
+						name={ ! url ? __( 'Add Image' ) : __( 'Replace' ) }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
+			<InspectorControls>
+				<PanelBody title={ __( 'Card settings' ) }>
+					<ImageSizeControl
+						onChangeImage={ updateImage }
+						slug={ sizeSlug }
+						width={ width }
+						height={ height }
+						// imageWidth={ naturalWidth }
+						// imageHeight={ naturalHeight }
+						imageSizeOptions={ imageSizeOptions }
+						isResizable={ true }
+					/>
+				</PanelBody>
+			</InspectorControls>
+		</>
+	);
+
+	const classes = classNames( className, 'wp-block-card', { [ `size-${ sizeSlug }` ]: sizeSlug, [ `has-text-align-${ align }` ]: align } );
+
+	const blockProps = useBlockProps( {
+		ref,
+		className: classes,
+	} );
+
+	return (
+		<>
+			{ controls }
+			<div { ...blockProps }>
+
+				{ ( ( url || temporaryURL ) && ! noMedia ) && (
+					<div className="wp-block-card-media">
+						<Image
+							temporaryURL={ temporaryURL }
+						/>
+					</div>
+				) }
+				{ ( ! noMedia && ( url || temporaryURL ) ) && (
+					<div className="wp-block-card-media">
+						<MediaPlaceholder
+							labels={ {
+								title: __( 'Card' ),
+								instructions: __( 'Drag and drop media onto this block, upload, or select existing media from your library.' ),
+							} }
+							onSelect={ onSelectImage }
+							onSelectURL={ onSelectURL }
+							accept="image/*"
+							allowedTypes={ [ 'image' ] }
+							value={ { id, url } }
+							onError={ onUploadError }
+							disableMediaButtons={ url }
+						/>
+					</div>
+				) }
+				<div className="wp-block-card-bottom">
+					<InnerBlocks />
+				</div>
 			</div>
-			<div className="wp-block-card-bottom">
-				<InnerBlocks />
-			</div>
-		</div>
+		</>
 	);
 }

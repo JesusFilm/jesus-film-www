@@ -8,6 +8,12 @@
 	"keywords": [ "image", "card", "callout" ],
 	"textdomain": "default",
 	"attributes": {
+		"noMedia": {
+			"type": "boolean",
+			"source": "attribute",
+			"selector": "img",
+			"attribute": "noMedia"
+		},
 		"url": {
 			"type": "string",
 			"source": "attribute",
@@ -52,6 +58,18 @@
 		},
 		"id": {
 			"type": "number"
+		},
+		"width": {
+			"type": "number"
+		},
+		"height": {
+			"type": "number"
+		},
+		"sizeSlug": {
+			"type": "string"
+		},
+		"align": {
+			"type": "string"
 		}
 	},
 	"supports": {
@@ -61,7 +79,5 @@
 			"gradients": true,
 			"link": true
 		}
-	},
-	"editorStyle": "wp-block-media-text-editor",
-	"style": "wp-block-media-text"
+	}
 }
