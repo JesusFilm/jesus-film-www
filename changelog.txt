@@ -1,0 +1,6 @@
+# 1.0.0 (2022-02-01)
+
+
+### Features
+
+* block styling among other things ([771fb05](https://github.com/dkjensen/jesus-film-project/commit/771fb05cc6f413e14a79b85f6798b0d29823b7d2))
