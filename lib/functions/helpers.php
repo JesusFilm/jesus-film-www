@@ -68,6 +68,17 @@ function is_type_archive() {
 }
 
 /**
+ * Check if we are on the blog.
+ *
+ * @return bool
+ */
+function is_blog() {
+	global $wp_query;
+
+	return ( \is_home() || \is_category() || \is_tag() || \is_tax() || \is_author() || \is_date() || \is_year() || \is_month() || \is_day() || \is_time() || \is_archive() ) && ( isset( $wp_query->query_vars['post_type'] ) && '' === $wp_query->query_vars['post_type'] || 'post' === $wp_query->query_vars['post_type'] );
+}
+
+/**
  * Checks if current page has the hero section enabled.
  *
  * @since 3.5.0
@@ -76,6 +87,19 @@ function is_type_archive() {
  */
 function has_hero_section() {
 	return \in_array( 'has-hero-section', \get_body_class(), true );
+}
+
+/**
+ * Return list of nav menus
+ *
+ * @return array
+ */
+function get_nav_menus() {
+	$menus = \wp_get_nav_menus( array( 'fields' => 'id=>name' ) );
+
+	array_unshift( $menus, '' );
+
+	return $menus;
 }
 
 add_action(

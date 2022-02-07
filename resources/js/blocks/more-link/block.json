@@ -11,19 +11,30 @@
 		"textAlign": {
 			"type": "string"
 		},
-		"content": {
+		"url": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "href"
+		},
+		"text": {
 			"type": "string",
 			"source": "html",
-			"default": "",
-			"__experimentalRole": "content"
+			"selector": "a"
+		},
+		"linkTarget": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "target"
 		},
 		"placeholder": {
 			"type": "string"
 		}
 	},
 	"supports": {
-		"anchor": false,
-		"className": false,
+		"anchor": true,
+		"align": true,
 		"color": {
 			"link": true
 		},

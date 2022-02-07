@@ -11,27 +11,45 @@
 
 namespace Dkjensen\JesusFilmProject\Structure;
 
-\add_action( 'genesis_meta', __NAMESPACE__ . '\front_page_loop', 5 );
+use function Dkjensen\JesusFilmProject\Functions\is_blog;
+
+\add_action( 'genesis_meta', __NAMESPACE__ . '\post_archive_header', 5 );
 /**
- * Only add hooks if were on the front page.
- *
- * @since 3.5.0
+ * Only add hooks if were on the blog.
  *
  * @return void
  */
-function front_page_loop() {
-	if ( \is_front_page() && \is_active_sidebar( 'front-page-1' ) ) {
-		\add_action( 'genesis_loop', __NAMESPACE__ . '\front_page_widget_areas' );
-		\add_filter( 'body_class', __NAMESPACE__ . '\front_page_body_class' );
-		\add_filter( 'genesis_markup_content-sidebar-wrap', '__return_null' );
-		\add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
-		\remove_action( 'genesis_loop', 'genesis_do_loop' );
-		\remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
-		\remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_posts_nav' );
-		\remove_theme_support( 'hero-section' );
+function post_archive_header() {
+	if ( is_blog() ) {
+		\remove_all_actions( 'genesis_before_loop' );
+
+		\add_action( 'genesis_before_content', __NAMESPACE__ . '\post_archive_header_markup' );
 	}
 }
 
+/**
+ * Render the blog archive header.
+ *
+ * @return void
+ */
+function post_archive_header_markup() {
+	if ( 'page' === \get_option( 'show_on_front' ) && \get_option( 'page_for_posts' ) ) {
+		$blog = \get_post( \get_option( 'page_for_posts' ) );
+
+		if ( $blog ) {
+			\genesis_markup(
+				array(
+					'open'    => '<section class="post-archive-header">',
+					'close'   => '</section>',
+					'context' => 'post-archive-header',
+					'content' => \apply_filters( 'the_content', $blog->post_content ),
+				) 
+			);
+		}
+	}
+}
+
+\add_filter( 'body_class', __NAMESPACE__ . '\front_page_body_class' );
 /**
  * Add additional classes to the body element.
  *
@@ -42,23 +60,12 @@ function front_page_loop() {
  * @return array
  */
 function front_page_body_class( $classes ) {
+	if ( ! \is_front_page() ) {
+		return $classes;
+	}
+
 	$classes   = \array_diff( $classes, array( 'no-hero-section' ) );
 	$classes[] = 'front-page';
 
 	return $classes;
-}
-
-/**
- * Display the front page widget areas.
- *
- * @since 3.5.0
- *
- * @return void
- */
-function front_page_widget_areas() {
-	$widget_areas = \get_theme_support( 'front-page-widgets' )[0];
-
-	for ( $i = 1; $i <= $widget_areas; $i++ ) {
-		\genesis_widget_area( 'front-page-' . $i );
-	}
 }

@@ -38,4 +38,17 @@
 			flex-direction: column;
 		}
 	}
+
+	.site-footer-logo-holder {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 4rem;
+
+		a {
+			display: inline-flex;
+			height: 123px;
+			align-items: center;
+		}
+	}
 }

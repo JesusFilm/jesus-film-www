@@ -8,13 +8,13 @@
 
 @font-face {
 	font-family: "jfm";
-	src: url("../fonts/jfm.eot");
+	src: url("assets/fonts/jfm.eot");
 	src:
-		url("../fonts/jfm.eot?#iefix") format("embedded-opentype"),
-		url("../fonts/jfm.svg#jfm") format("svg"),
-		url("../fonts/jfm.ttf") format("truetype"),
-		url("../fonts/jfm.woff") format("woff"),
-		url("../fonts/jfm.woff2") format("woff2");
+		url("assets/fonts/jfm.eot?#iefix") format("embedded-opentype"),
+		url("assets/fonts/jfm.svg#jfm") format("svg"),
+		url("assets/fonts/jfm.ttf") format("truetype"),
+		url("assets/fonts/jfm.woff") format("woff"),
+		url("assets/fonts/jfm.woff2") format("woff2");
 	font-weight: $font-weight--regular;
 	font-style: normal;
 }

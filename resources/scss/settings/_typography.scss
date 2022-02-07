@@ -55,11 +55,11 @@ $line-height--heading: modular-scale(-1, $golden);
 @font-face {
 	font-family: "ApercuBold";
 	src:
-		url("../fonts/Apercu-Bold.woff") format("woff"),
-		url("../fonts/ApercuBold.woff2") format("woff2"),
-		url("../fonts/Apercu-Bold.svg#Apercu-Bold") format("svg"),
-		url("../fonts/Apercu-Bold.ttf") format("truetype"),
-		url("../fonts/ApercuBold.eot");
+		url("assets/fonts/Apercu-Bold.woff") format("woff"),
+		url("assets/fonts/ApercuBold.woff2") format("woff2"),
+		url("assets/fonts/Apercu-Bold.svg#Apercu-Bold") format("svg"),
+		url("assets/fonts/Apercu-Bold.ttf") format("truetype"),
+		url("assets/fonts/ApercuBold.eot");
 	font-weight: $font-weight--bold;
 	font-style: normal;
 }

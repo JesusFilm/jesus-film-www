@@ -97,6 +97,11 @@ return array(
 				'color' => '#6c757d',
 			),
 			array(
+				'name'  => esc_html__( 'Gray 100', 'jesus-film-project' ),
+				'slug'  => 'gray-100',
+				'color' => '#fcfbf9',
+			),
+			array(
 				'name'  => esc_html__( 'White', 'jesus-film-project' ),
 				'slug'  => 'white',
 				'color' => '#ffffff',

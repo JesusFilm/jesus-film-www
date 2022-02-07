@@ -11,8 +11,8 @@
 		"noMedia": {
 			"type": "boolean",
 			"source": "attribute",
-			"selector": "img",
-			"attribute": "noMedia"
+			"attribute": "noMedia",
+			"default": true
 		},
 		"url": {
 			"type": "string",

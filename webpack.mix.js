@@ -90,6 +90,7 @@ mix
     .js([
         `${devPath}/js/hide-show.js`,
         `${devPath}/js/forms.js`,
+        `${devPath}/js/responsive-embeds.js`,
         `${devPath}/js/navigation.js`,
         `${devPath}/js/header-search.js`,
         `${devPath}/js/sticky-header.js`,
@@ -227,7 +228,8 @@ if (process.env.sync) {
             'config/*.php',
             'lib/**/*.php',
             'templates/*.php',
-            'functions.php'
+            'functions.php',
+            'style.css',
         ]
     });
 }

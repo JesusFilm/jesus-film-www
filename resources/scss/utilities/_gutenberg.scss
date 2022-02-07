@@ -7,7 +7,8 @@
 ////
 
 :root {
-	--wp--style--block-gap: #{ $gutter };
+	--wp--style--block-gap: #{ $gutter } !important;
+	--wp--present--font-size--medium: #{ $font-size--medium } !important;
 }
 
 /// Loops through the theme colors and adds utility classes for them. Primarily,
@@ -26,6 +27,10 @@
 
 	.has-#{ $color-name }-background-color {
 		background-color: #{ $color-value };
+	}
+
+	.has-#{ $color-name }-border-color {
+		border-color: #{ $color-value };
 	}
 }
 

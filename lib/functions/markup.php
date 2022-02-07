@@ -57,6 +57,11 @@ function body_classes( $classes ) {
 		$classes[] = 'is-single';
 	}
 
+	// Add blog class.
+	if ( is_blog() ) {
+		$classes[] = 'blog';
+	}
+
 	// Add archive type class.
 	if ( is_type_archive() ) {
 		$classes[] = 'is-archive';

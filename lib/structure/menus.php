@@ -24,11 +24,15 @@ namespace Dkjensen\JesusFilmProject\Structure;
  * @return void
  */
 function do_submenu() {
-	if ( ! \is_singular() ) {
+	if ( ! \is_singular( 'page' ) ) {
 		return;
 	}
 
 	$submenu = \get_post_meta( \get_queried_object_id(), '_jf_submenu', true );
+
+	if ( ! $submenu ) {
+		$submenu = \genesis_get_option( 'page_submenu' );
+	}
 
 	if ( ! $submenu ) {
 		return;

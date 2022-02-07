@@ -43,6 +43,28 @@
 					}
 				}
 			}
+
+			&.has-primary-background-color {
+				border-color: $color--primary;
+				background-color: $color--primary;
+				background-image: $gradient--primary;
+
+				@include hover-focus {
+					border-color: $color--primary;
+					background-color: $color--primary;
+					background-image: none;
+					box-shadow: inset 0 1px 3px 0 rgba($color--primary, 0.25);
+				}
+			}
+
+			.has-arrow & {
+
+				&:after {
+					margin-left: 1.6rem;
+
+					@include icon("\f30b", 700);
+				}
+			}
 		}
 	}
 
@@ -56,6 +78,13 @@
 	&-jf-card {
 
 		@include card();
+
+		&-media {
+
+			img {
+				width: 100%;
+			}
+		}
 	}
 
 	// Categories block.
@@ -74,6 +103,7 @@
 
 	// Columns block.
 	&-columns {
+		margin-bottom: $gutter;
 
 		@include mq($until: m) {
 			flex-wrap: wrap;
@@ -88,6 +118,8 @@
 	}
 
 	&-column {
+		display: flex;
+		flex-direction: column;
 
 		@include mq($until: m) {
 			flex: none;
@@ -192,13 +224,53 @@
 		}
 	}
 
+	// Genesis blocks.
+	&-genesis-blocks {
+
+		// Accordion block.
+		&-gb-accordion {
+
+			details {
+				appearance: none;
+				background-color: $color--gray-100;
+
+				.gb-accordion-title {
+					display: flex;
+					margin: 0;
+					padding: $gutter;
+					color: $color--black;
+					background-color: $color--gray-100;
+					cursor: pointer;
+					justify-content: space-between;
+					align-items: center;
+
+					@extend h4;
+
+					&:after {
+						margin-left: $gutter;
+						content: "+";
+					}
+				}
+
+				&[open] .gb-accordion-title:after {
+					content: "-";
+				}
+
+				.gb-accordion-text {
+					padding: 0 $gutter $gutter;
+					font-size: $font-size--medium;
+				}
+			}
+		}
+	}
+
 	// Group block.
 	&-group {
 
 		&,
 		&.has-background {
 
-			@include padding($gutter * 2 0);
+			@include padding($gutter * 2);
 		}
 	}
 
@@ -220,7 +292,15 @@
 		}
 
 		&.alignfull {
+			left: auto;
+			width: 100%;
 			max-width: none;
+
+			@include margin(null 0);
+
+			img {
+				margin: 0;
+			}
 		}
 	}
 
@@ -246,12 +326,41 @@
 		}
 	}
 
+	// Media text block.
+	&-media-text {
+		margin: $gutter 0;
+
+		&.has-background {
+			box-shadow: $base--box-shadow;
+		}
+
+		& &__content {
+			padding: $gap-large;
+
+			@include mq(m) {
+				padding: calc($gap-large + 1rem);
+			}
+
+			p {
+				color: rgba($color--black, 0.65);
+				line-height: 1.87;
+				letter-spacing: 0;
+
+				&:last-of-type {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
 	// More link block.
-	&-more-link {
+	&-jf-more-link {
 
 		a {
 
 			@include more-link();
+
+			cursor: pointer;
 		}
 	}
 
@@ -268,13 +377,12 @@
 
 	// Pullquote block.
 	&-pullquote {
+		padding: 0;
 		border-left: 0;
 
-		@include margin($spacing--l null);
-
-		&.aligncenter {
-
-			@include margin($spacing--l null);
+		p {
+			font-size: inherit;
+			line-height: $base--line-height;
 		}
 	}
 

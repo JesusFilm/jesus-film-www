@@ -26,7 +26,7 @@ $search_query = apply_filters( 'the_search_query', get_search_query() ); // phpc
  *
  * @param string The search text.
  */
-$search_text = apply_filters( 'genesis_search_text', __( 'Search this website', 'genesis' ) );
+$search_text = apply_filters( 'genesis_search_text', __( 'Search this website', 'jesus-film-project' ) );
 
 /**
  * Search form label.
@@ -46,7 +46,7 @@ $search_label = apply_filters( 'genesis_search_form_label', '' );
  *
  * @param string The search button text.
  */
-$search_button_text = apply_filters( 'genesis_search_button_text', esc_attr__( 'Search', 'genesis' ) );
+$search_button_text = apply_filters( 'genesis_search_button_text', esc_attr__( 'Search', 'jesus-film-project' ) );
 
 $strings = array(
 	'label'        => $search_label,

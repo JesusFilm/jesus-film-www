@@ -6,6 +6,12 @@
 /// @link   https://github.com/dkjensen/jesus-film-project
 ////
 
+// Hidden
+.hidden {
+
+	@include hide-visually();
+}
+
 // Box
 .box {
 

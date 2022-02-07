@@ -217,9 +217,11 @@
 ////
 
 @mixin card {
-	height: 100%;
+	display: flex;
+	flex-direction: column;
+	height: inherit;
 	background: $color--gray-100;
-	box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+	box-shadow: $base--box-shadow;
 
 	h4 {
 
@@ -234,32 +236,36 @@
 	}
 
 	p {
-		color: rgba($color--black, 0.65);
 		line-height: 1.87;
 		letter-spacing: 0;
 
-		&:last-of-type {
+		&:not(.has-text-color) {
+			color: rgba($color--black, 0.65);
+		}
+
+		&:last-child {
 			margin-bottom: 0;
 		}
 	}
 
 	> [class$="-copy"] {
-		margin: 0 0 2.4rem;
+		margin: 0 0 $gap;
 	}
 
 	> [class$="-bottom"] {
 		display: flex;
 		flex-direction: column;
 		height: inherit;
-		padding: 3.2rem;
+		padding: $gap-large;
 
 		.wp-block {
 			max-width: 100%;
 		}
 
+		.wp-block-jf-more-link,
 		.wp-block-more-link {
 			margin-top: auto;
-			padding-top: 2.4rem;
+			padding-top: $gap;
 		}
 	}
 
@@ -287,6 +293,14 @@
 				color: $color--black;
 			}
 		}
+	}
+
+	&.auto-height {
+		height: auto !important;
+	}
+
+	.wp-block-column & {
+		height: 100%;
 	}
 }
 

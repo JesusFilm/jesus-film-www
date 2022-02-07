@@ -331,20 +331,22 @@ export default function edit( { attributes, setAttributes, className, insertBloc
 		className: classes,
 	} );
 
+	console.log( noMedia + ': ' + url );
+
 	return (
 		<>
 			{ controls }
 			<div { ...blockProps }>
 
-				{ ( ( url || temporaryURL ) && ! noMedia ) && (
-					<div className="wp-block-card-media">
-						<Image
-							temporaryURL={ temporaryURL }
+				{ ( url && ! noMedia ) && (
+					<div className="wp-block-jf-card-media">
+						<img
+							src={url}
 						/>
 					</div>
 				) }
-				{ ( ! noMedia && ( url || temporaryURL ) ) && (
-					<div className="wp-block-card-media">
+				{ ( ! noMedia && ! url ) && (
+					<div className="wp-block-jf-card-media">
 						<MediaPlaceholder
 							labels={ {
 								title: __( 'Card' ),
@@ -360,7 +362,7 @@ export default function edit( { attributes, setAttributes, className, insertBloc
 						/>
 					</div>
 				) }
-				<div className="wp-block-card-bottom">
+				<div className="wp-block-jf-card-bottom">
 					<InnerBlocks />
 				</div>
 			</div>

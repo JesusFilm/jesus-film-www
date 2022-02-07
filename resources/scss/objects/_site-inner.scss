@@ -22,4 +22,10 @@
 			margin-top: $spacing--xxl;
 		}
 	}
+
+	.blog & {
+		background: $color--tan;
+
+		@include padding($gutter * 2 0);
+	}
 }

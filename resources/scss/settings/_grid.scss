@@ -9,6 +9,7 @@
 // Grid spacing.
 $gutter: 2rem;
 $gap: $spacing--m * $perfect-fifth;
+$gap-large: 3.2rem;
 
 // Column fractions.
 $one-half: calc((100% - (#{$gutter} * 1)) / 2);

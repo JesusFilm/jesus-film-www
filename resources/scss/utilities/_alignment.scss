@@ -68,6 +68,10 @@
 			max-width: $layout--width;
 
 			@include margin(null auto);
+
+			.narrow-content & {
+				max-width: $layout--width--content-narrow;
+			}
 		}
 	}
 }

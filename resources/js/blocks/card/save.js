@@ -42,11 +42,11 @@ export default function save( { attributes } ) {
 	return (
 		<div { ...useBlockProps.save( { className: classes } ) }>
 			{ ( ! noMedia && url ) && (
-				<div className="wp-block-card-media">
+				<div className="wp-block-jf-card-media">
 					{ figure }
 				</div>
 			) }
-			<div className="wp-block-card-bottom">
+			<div className="wp-block-jf-card-bottom">
 				<InnerBlocks.Content />
 			</div>
 		</div>

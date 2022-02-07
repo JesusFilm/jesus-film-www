@@ -13,6 +13,9 @@
 @import "settings/_index";
 @import "tools/_index";
 @import "components/block";
+@import "components/entry";
+@import "elements/heading";
+@import "utilities/gutenberg";
 
 .wp-block:not([data-align=full]) {
 	max-width: $layout--width;

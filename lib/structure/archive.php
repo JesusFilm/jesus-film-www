@@ -12,6 +12,7 @@
 namespace Dkjensen\JesusFilmProject\Structure;
 
 use function Dkjensen\JesusFilmProject\Functions\is_type_archive;
+use function Dkjensen\JesusFilmProject\Functions\is_blog;
 
 // Reposition entry image.
 \remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
@@ -47,6 +48,10 @@ function archive_post_class( $classes ) {
 	} else {
 		$classes[] = 'one-half';
 		$count     = 2;
+	}
+
+	if ( is_blog() ) {
+		$classes[] = 'card';
 	}
 
 	global $wp_query;
@@ -150,6 +155,64 @@ function widget_entry_wrap_open( $open, $args ) {
 	}
 
 	return $open;
+}
+
+\remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+add_action( 'genesis_entry_header', __NAMESPACE__ . '\entry_meta', 12 );
+/**
+ * Echo the post meta.
+
+ * @return void
+ */
+function entry_meta() {
+
+	if ( ! \post_type_supports( \get_post_type(), 'genesis-entry-meta-before-content' ) ) {
+		return;
+	}
+
+	$post_info = \wp_kses_post( \genesis_get_option( 'entry_meta_before_content' ) );
+	$filtered  = \apply_filters( 'genesis_post_info', $post_info );
+
+	if ( '' === trim( $filtered ) ) {
+		return;
+	}
+
+	\genesis_markup(
+		array(
+			'open'    => '<div %s>',
+			'close'   => '</div>',
+			'content' => \genesis_strip_p_tags( $filtered ),
+			'context' => 'entry-meta-before-content',
+		)
+	);
+
+}
+
+\remove_action( 'genesis_entry_footer', 'genesis_post_meta', 10 );
+\add_action( 'genesis_entry_footer', __NAMESPACE__ . '\entry_footer_post_meta', 10 );
+
+function entry_footer_post_meta() {
+
+	if ( ! \post_type_supports( \get_post_type(), 'genesis-entry-meta-after-content' ) ) {
+		return;
+	}
+
+	$post_meta = \wp_kses_post( \genesis_get_option( 'entry_meta_after_content' ) );
+	$filtered  = \apply_filters( 'genesis_post_meta', $post_meta );
+
+	if ( '' === trim( $filtered ) ) {
+		return;
+	}
+
+	\genesis_markup(
+		array(
+			'open'    => '<div %s>',
+			'close'   => '</div>',
+			'content' => \genesis_strip_p_tags( $filtered ),
+			'context' => 'entry-footer-meta',
+		)
+	);
+
 }
 
 \add_filter( 'excerpt_length', __NAMESPACE__ . '\excerpt_length' );

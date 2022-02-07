@@ -47,6 +47,7 @@ namespace Dkjensen\JesusFilmProject;
 		'../vendor/autoload',
 
 		// Functions.
+		'functions/blocks',
 		'functions/helpers',
 		'functions/setup',
 		'functions/enqueue',
@@ -72,6 +73,7 @@ namespace Dkjensen\JesusFilmProject;
 		'shortcodes/hook',
 		'shortcodes/search-form',
 		'shortcodes/widget-area',
+		'shortcodes/post-author-box',
 
 		// Plugins.
 		'plugins/gravity-forms',

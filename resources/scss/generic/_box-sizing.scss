@@ -21,6 +21,7 @@ html {
 	-ms-overflow-style: -ms-autohiding-scrollbar;
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
+	scroll-behavior: smooth;
 
 	&.admin-bar-showing {
 		height: calc(100% - 32px);
