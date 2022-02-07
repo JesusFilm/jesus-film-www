@@ -9,12 +9,6 @@ module.exports = {
         "changelogFile": "changelog.txt"
       }
     ],
-    [
-      "@semantic-release/git",
-      {
-        "assets": ["changelog.txt"]
-      }
-    ],
     ["@semantic-release/npm", { npmPublish: false }],
     "@semantic-release/github",
     [
@@ -26,6 +20,11 @@ module.exports = {
         ],
         "placeholder": "0.0.0-development"
       }
-    ]
+    ],
+    ["@semantic-release/github", {
+      "assets": [
+        {"path": "build/jesus-film-www.zip", "label": "Bundled theme"}
+      ]
+    }]
   ]
 };
