@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/dkjensen/jesus-film-project/compare/1.0.0...1.1.0) (2022-02-07)
+
+
+### Features
+
+* update blocks + various theme changes ([7013982](https://github.com/dkjensen/jesus-film-project/commit/70139827b372567b9cd843e06a66eeee42aa1d9f))
+
 # 1.0.0 (2022-02-01)
 
 
