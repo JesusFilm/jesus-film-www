@@ -6,16 +6,6 @@ module.exports = {
     ["@semantic-release/npm", { 
       npmPublish: false 
     }],
-    // [
-    //   "semantic-release-plugin-update-version-in-files",
-    //   {
-    //     "files": [
-    //       "package.json",
-    //       "style.css"
-    //     ],
-    //     "placeholder": "0.0.0-development"
-    //   }
-    // ],
     ["@semantic-release/exec", {
       "publishCmd": "./bin/build-zip.sh ${nextRelease.version}"
     }],
