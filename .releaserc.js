@@ -8,7 +8,7 @@ module.exports = {
       npmPublish: false 
     }],
     ["@semantic-release/exec", {
-      "publishCmd": "./bin/build-zip.sh ${nextRelease.version}"
+      "publishCmd": "chmod +x ./bin/build-zip.sh && ./bin/build-zip.sh ${nextRelease.version}"
     }],
     ["@semantic-release/github", {
       "assets": [
