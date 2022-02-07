@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/dkjensen/jesus-film-project/compare/1.2.0...1.2.1) (2022-02-07)
+
+
+### Bug Fixes
+
+* upload release asset ([173d0af](https://github.com/dkjensen/jesus-film-project/commit/173d0afaa32d49e57ad6ebba3d802b8ed7b504f0))
+
 # [1.2.0](https://github.com/dkjensen/jesus-film-project/compare/1.1.0...1.2.0) (2022-02-07)
 
 
