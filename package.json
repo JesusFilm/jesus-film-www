@@ -31,7 +31,6 @@
     "eslint": "^7.0.0",
     "genesis-theme-claim": "^0.6.0",
     "husky": "^6.0.0",
-    "imagemin-mozjpeg": "^9.0.0",
     "imagemin-webpack-plugin": "^2.4.0",
     "laravel-mix": "^6.0.19",
     "laravel-mix-svg-sprite": "^1.0.2",

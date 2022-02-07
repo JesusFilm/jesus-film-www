@@ -12,7 +12,6 @@
 const mix = require('laravel-mix');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const imageminMozjpeg = require('imagemin-mozjpeg');
 const packageJson = require('./package.json');
 const prependFile = require('prepend-file');
 
@@ -196,11 +195,7 @@ mix.webpackConfig({
                     {removeViewBox: false},
                     {removeUnknownsAndDefaults: false}
                 ]
-            },
-            plugins: [
-                // @link https://github.com/imagemin/imagemin-mozjpeg
-                imageminMozjpeg({quality: 75})
-            ]
+            }
         })
     ]
 });
