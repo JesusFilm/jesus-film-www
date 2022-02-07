@@ -14,8 +14,8 @@ jobs:
 
       - name: Build release
         run: |
-          chmod +x "${GITHUB_WORKSPACE}/.bin/build-zip.sh"
-          "${GITHUB_WORKSPACE}/.bin/build-zip.sh"
+          chmod +x "${GITHUB_WORKSPACE}/bin/build-zip.sh"
+          "${GITHUB_WORKSPACE}/bin/build-zip.sh"
       - name: Semantic release
         id: semantic
         uses: codfish/semantic-release-action@master
