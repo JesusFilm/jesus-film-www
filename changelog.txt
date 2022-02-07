@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/dkjensen/jesus-film-project/compare/1.1.0...1.2.0) (2022-02-07)
+
+
+### Bug Fixes
+
+* build asset path ([0849d04](https://github.com/dkjensen/jesus-film-project/commit/0849d04156ee0c614049245838aa6cbd4a148617))
+* build asset path ([24270b4](https://github.com/dkjensen/jesus-film-project/commit/24270b4f459a76e41a3b8d80e44139f9fa9bb1ec))
+
+
+### Features
+
+* update deploy script ([b979262](https://github.com/dkjensen/jesus-film-project/commit/b97926201f6a499f58573f24e0a94f7dac6c27b6))
+
 # [1.1.0](https://github.com/dkjensen/jesus-film-project/compare/1.0.0...1.1.0) (2022-02-07)
 
 
