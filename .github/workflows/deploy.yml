@@ -12,27 +12,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run composer install
+      - name: Build release
         run: |
-          composer clear-cache
-          composer install --no-dev --prefer-dist
-      - name: Install npm packages
-        run: |
-          npm ci
-      - name: Build
-        run: |
-          npm install
-          npm run build
-          npm run i18n
+          chmod +x "${GITHUB_WORKSPACE}/.bin/build-zip.sh"
+          "${GITHUB_WORKSPACE}/.bin/build-zip.sh"
       - name: Semantic release
         id: semantic
         uses: codfish/semantic-release-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release asset
-        if: |
-          steps.semantic.outputs.new-release-published == 'true' &&
-          startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: |
+            build/jesus-film-www.zip
