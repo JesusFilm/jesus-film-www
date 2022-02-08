@@ -15,10 +15,10 @@ jobs:
       - uses: php-actions/composer@v6
         with:
           php_version: "7.3"
-      - uses: AEnterprise/rsync-deploy@v1.0
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - run: apt-get -yq install rsync openssh-client
 
       # - name: Build release
       #   run: |
