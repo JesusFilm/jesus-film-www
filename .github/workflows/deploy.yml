@@ -20,6 +20,10 @@ jobs:
           node-version: '16'
       - run: sudo apt-get -yq install rsync openssh-client
 
+      - name: Install npm packages
+        run: |
+          npm ci
+
       # - name: Build release
       #   run: |
       #     chmod +x "${GITHUB_WORKSPACE}/bin/build-zip.sh"
