@@ -44,19 +44,6 @@
 				}
 			}
 
-			&.has-primary-background-color {
-				border-color: $color--primary;
-				background-color: $color--primary;
-				background-image: $gradient--primary;
-
-				@include hover-focus {
-					border-color: $color--primary;
-					background-color: $color--primary;
-					background-image: none;
-					box-shadow: inset 0 1px 3px 0 rgba($color--primary, 0.25);
-				}
-			}
-
 			.has-arrow & {
 
 				&:after {
@@ -270,7 +257,7 @@
 		&,
 		&.has-background {
 
-			@include padding($gutter * 2);
+			@include padding($gutter * 2 0);
 		}
 	}
 
@@ -364,10 +351,42 @@
 		}
 	}
 
+	// Template part block.
+	&-jf-template-part {
+
+		.is-flex-container & {
+			height: 100%;
+		}
+
+		.mission-trip {
+
+			.card-top {
+
+				a {
+					display: block;
+					overflow: hidden;
+					height: 12.2rem;
+
+					img {
+						object-fit: cover;
+						object-position: center;
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
+		}
+	}
+
 	&-post-template {
 
 		&.is-flex-container {
 			gap: $gutter;
+
+			> li {
+
+				@include margin(null 0);
+			}
 		}
 	}
 
@@ -392,6 +411,18 @@
 
 	// Separator block.
 	&-separator {
+		opacity: 1;
+
+		&:not(.is-style-dots) {
+			border-bottom: 1px solid !important;
+		}
+
+		@each $color-name, $color-value in $colors {
+			&.has-#{ $color-name }-background-color {
+				border-color: #{ $color-value };
+				background: none;
+			}
+		}
 	}
 
 	// Subhead block.
@@ -405,6 +436,17 @@
 
 	// Table block.
 	&-table {
+
+		thead,
+		tfoot {
+			border: 0;
+		}
+
+		th,
+		td {
+			border: 0;
+			border-bottom: 1px solid #e1e1e1;
+		}
 	}
 
 	// Verse block.
