@@ -20,7 +20,7 @@ npm ci
 echo "Running JS Build..."
 npm run build || exit "$?"
 echo "Generating translations..."
-npm run i18n || exit "$?"
+mkdir ./assets/lang && npm run i18n || exit "$?"
 
 echo "Syncing files..."
 rsync -rc --exclude-from="$PROJECT_PATH/.distignore" "$PROJECT_PATH/" "$DEST_PATH/" --delete --delete-excluded
