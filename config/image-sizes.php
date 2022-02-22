@@ -15,6 +15,7 @@ return array(
 	'add'    => array(
 		'featured' => array( 620, 380, true ),
 		'hero'     => array( 1920, 1080, true ),
+		'card'	   => array( 800, 448, true ),
 	),
 	'remove' => array(),
 );

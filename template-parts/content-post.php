@@ -1,6 +1,6 @@
 <?php
 /**
- * Post template part
+ * Post template part.
  *
  * @package   Dkjensen\JesusFilmProject
  * @link      https://dkjensen.com
@@ -24,6 +24,7 @@
 			</div>
 			<?php \the_title( '<h4><a href="' . \esc_url( \get_permalink() ) . '" title="' . \esc_attr( \get_the_title() ) . '">', '</a></h4>' ); ?>
 			<?php \the_excerpt(); ?>
+			<?php echo do_shortcode( '[post_author_box]' ); ?>
 		</div>
 	</div>
 </article>

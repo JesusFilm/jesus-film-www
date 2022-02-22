@@ -20,7 +20,11 @@ namespace Dkjensen\JesusFilmProject\Shortcodes;
  * @return string
  */
 function post_author_box_shortcode( $atts, $content = '' ) {
-	global $post;
+	global $post, $wp_query;
+
+	$atts = \shortcode_atts( array(
+		'show_bio'	=> 0,
+	), $atts, 'post_author_box' );
 
 	$author = \get_userdata( $post->post_author ?? 0 );
 
@@ -45,6 +49,14 @@ function post_author_box_shortcode( $atts, $content = '' ) {
 		<a href="<?php echo \esc_url( \get_author_posts_url( $author->ID ) ); ?>" class="entry-author-box-name" title="<?php echo sprintf( \esc_attr( 'Show posts by %s' ), $author->display_name ); ?>">
 			<?php echo \esc_html( $author->display_name ); ?>
 		</a>
+
+		<?php if ( $atts['show_bio'] && $author->description && $wp_query->is_singular ) : ?>
+
+		<div class="entry-author-box-bio">
+			<?php echo \apply_filters( 'comment_text', $author->description ); ?>
+		</div>
+
+		<?php endif; ?>
 	</div>
 
 	<?php

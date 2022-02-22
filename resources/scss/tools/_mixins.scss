@@ -269,6 +269,11 @@
 		}
 	}
 
+	> [class$="-footer"] {
+		padding: $gap-large;
+		border-top: 1px solid #ccc;
+	}
+
 	&-meta {
 		margin: 0 0 7px;
 
@@ -410,6 +415,36 @@
 		@include hover-focus {
 			color: $color--white;
 			background: $color--primary;
+		}
+	}
+
+
+	&.has-primary-background-color {
+		border-color: $color--primary;
+		background-color: $color--primary;
+		background-image: $gradient--primary;
+
+		@include hover-focus {
+			border-color: $color--primary;
+			background-color: $color--primary;
+			background-image: none;
+			box-shadow: inset 0 1px 3px 0 rgba($color--primary, 0.25);
+		}
+	}
+
+	&.has-tan-background-color,
+	&.secondary {
+		border: solid 1px $color--button-secondary;
+		color: #3b3b3b;
+		background-color: $color--button-secondary;
+		background-image: linear-gradient($color--tan, $color--button-secondary), linear-gradient(to left, rgba(255, 255, 255, 0.5), $color--tan);
+		background-blend-mode: normal, multiply;
+
+		@include hover-focus {
+			border: solid 1px $color--tan;
+			background-color: $color--tan;
+			background-image: none;
+			box-shadow: inset 0 1px 3px 0 rgba($color--black, 25%);
 		}
 	}
 

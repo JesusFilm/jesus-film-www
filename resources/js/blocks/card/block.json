@@ -10,9 +10,7 @@
 	"attributes": {
 		"noMedia": {
 			"type": "boolean",
-			"source": "attribute",
-			"attribute": "noMedia",
-			"default": true
+			"default": false
 		},
 		"url": {
 			"type": "string",

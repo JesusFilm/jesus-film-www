@@ -9,8 +9,6 @@
 .pagination {
 	width: 100%;
 	padding: $gutter 0;
-	border-top: $base--border;
-	background-color: $color--background;
 
 	@include mq(m) {
 		margin-top: auto;
@@ -25,14 +23,35 @@
 		flex-wrap: wrap;
 		margin-bottom: 0;
 		list-style-type: none;
+		align-items: flex-end;
+		gap: $spacing--s;
+	}
+
+	a,
+	span {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 4rem;
+		height: 4rem;
+		padding: 0 $spacing--m;
+		background: $color--gray-100;
+		box-shadow: $base--box-shadow;
+		text-decoration: none;
 	}
 
 	li {
-		margin-right: $spacing--s;
+
 	}
 
 	// Active item.
 	.active {
+
+		a,
+		span {
+			color: $color--white;
+			background: $color--primary;
+		}
 	}
 
 	// Previous item.

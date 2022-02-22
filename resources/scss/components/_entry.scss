@@ -39,6 +39,11 @@
 			font-size: $font-size--h4;
 		}
 
+		.is-single & {
+			order: -1;
+			margin: $spacing--xxl 0 0.8rem;
+		}
+
 		a {
 			color: $color--text;
 
@@ -64,7 +69,8 @@
 	&-author-box {
 		display: flex;
 		align-items: center;
-		column-gap: 1.6rem;
+		gap: 1.6rem;
+		flex-wrap: wrap;
 
 		img {
 			overflow: hidden;
@@ -78,6 +84,19 @@
 
 		a {
 			text-decoration: none;
+		}
+
+		&-avatar {
+			flex: 0 0 46px;
+		}
+
+		&-bio {
+			flex: 1 0 100%;
+			font-size: $font-size--medium;
+
+			a {
+				text-decoration: underline;
+			}
 		}
 	}
 
@@ -147,11 +166,41 @@
 		margin-top: auto;
 		padding-top: $gap;
 
+		.is-single & {
+			padding-bottom: $spacing--xl;
+		}
+
 		p {
 
 			&:last-of-type {
 				margin-bottom: 0;
 			}
+		}
+	}
+
+	// Singular post header info.
+	&-post-header-info {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		margin: 0 0 $gap-large;
+		gap: $gutter;
+
+		@include mq(m) {
+			justify-content: space-between;
+			align-items: center;
+			flex-direction: row;
+		}
+	}
+
+	// Social share.
+	&-social-share {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+
+		a {
+			text-decoration: none;
 		}
 	}
 

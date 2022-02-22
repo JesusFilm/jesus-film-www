@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "jf/template-part",
+	"title": "Template Part",
+	"category": "design",
+    "parent": [ "core/post-template" ],
+	"description": "Render a template part from the current theme.",
+	"textdomain": "default",
+    "usesContext": [ "postId", "postType", "queryId" ],
+	"attributes": {
+		"postId": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"reusable": false,
+		"html": false,
+		"align": true
+	}
+}

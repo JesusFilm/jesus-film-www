@@ -6,8 +6,8 @@
 /// @link   https://dkjensen.com/themes/genesis-starter-theme
 ////
 
-$layout--width: $mq-xxl;
-$layout--width--sidebar: 30rem;
+$layout--width: 1264px;
+$layout--width--sidebar: 38rem;
 $layout--width--content: calc(#{$layout--width} - (#{$layout--width--sidebar} + #{$spacing--xl}));
 $layout--max-width--content: calc(100% - (#{$layout--width--sidebar} + #{$spacing--xl}));
 $layout--width--content-narrow: 64.4rem;

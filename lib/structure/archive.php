@@ -165,8 +165,7 @@ add_action( 'genesis_entry_header', __NAMESPACE__ . '\entry_meta', 12 );
  * @return void
  */
 function entry_meta() {
-
-	if ( ! \post_type_supports( \get_post_type(), 'genesis-entry-meta-before-content' ) ) {
+	if ( ! \post_type_supports( \get_post_type(), 'genesis-entry-meta-before-content' ) || ( \is_singular() && \is_main_query() ) ) {
 		return;
 	}
 

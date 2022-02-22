@@ -103,21 +103,6 @@ return array(
 					),
 				),
 			),
-			'genesis_navigation'   => array(
-				'title'    => __( 'Navigation', 'jesus-film-project' ),
-				'panel'    => 'genesis',
-				'controls' => array(
-					'page_submenu' => array(
-						'label'    => __( 'Select Default Page Submenu', 'jesus-film-project' ),
-						'section'  => 'genesis_navigation',
-						'type'     => 'select',
-						'choices'  => get_nav_menus(),
-						'settings' => array(
-							'default' => '',
-						),
-					),
-				),
-			),
 			'genesis_breadcrumbs'  => array(
 				'theme_supports' => 'genesis-breadcrumbs',
 				'title'          => __( 'Breadcrumbs', 'jesus-film-project' ),

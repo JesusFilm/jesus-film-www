@@ -53,7 +53,7 @@ return array(
 		'genesis-footer-widgets'   => 3,
 		'genesis-menus'            => array(
 			'primary' => __( 'Header Menu', 'jesus-film-project' ),
-			// 'secondary' => __( 'After Header Menu', 'jesus-film-project' ),
+			'submenu' => __( 'Sub Menu', 'jesus-film-project' ),
 		),
 		'genesis-structural-wraps' => array(
 			'header',
@@ -65,7 +65,7 @@ return array(
 		'gutenberg'                => array(
 			'wide-images' => true,
 		),
-		// 'hero-section',
+		'hero-section',
 		'html5'                    => array(
 			'caption',
 			'comment-form',

@@ -65,3 +65,107 @@ function gutenberg_unset_global_styles() {
 		} 
 	);
 }
+
+/**
+ * Register block and related scripts
+ *
+ * @return void
+ */
+function register_block() {
+	\register_block_type_from_metadata( \trailingslashit( __DIR__ ) . '../blocks/template-part',
+		array(
+			'render_callback'   => __NAMESPACE__ . '\render_block_template_part',
+			'skip_inner_blocks' => true,
+		)
+	);
+}
+\add_action( 'init', __NAMESPACE__ . '\register_block' );
+
+/**
+ * Renders the post template part on the server.
+ *
+ * @param array    $attributes Block attributes.
+ * @param string   $content    Block default content.
+ * @param WP_Block $block      Block instance.
+ * @return string  Returns the template part for the given post.
+ */
+function render_block_template_part( $attributes, $content, $block ) {
+	if ( ! isset( $block->context['postId'] ) ) {
+		return '';
+	}
+
+	$content = get_template_part( $block->context['postId'] );
+
+	\wp_reset_postdata();
+
+	return \apply_filters( 'wp_block_template_part_content', sprintf( '<div %1$s>%2$s</div>', \get_block_wrapper_attributes(), $content ), $block, $attributes );
+}
+
+/**
+ * Helper function to get template part for a given post
+ *
+ * @param  int|WP_Post $post Post to get template part for.
+ * @return string
+ */
+function get_template_part( $post ) {
+	$content = '';
+	$post    = \get_post( $post );
+
+	ob_start();
+
+	\get_template_part(
+		\apply_filters( 'wp_block_template_part', 'template-parts/content-' . $post->post_type, $post ),
+		\get_post_format( $post )
+	);
+
+	$has_template_part = ob_get_clean();
+
+	if ( $has_template_part ) {
+		$content = $has_template_part;
+	}
+
+	return $content;
+}
+
+/**
+ * Register REST API fields
+ *
+ * @return void
+ */
+function rest_api_post_fields() {
+	$post_types = \get_post_types( array( 'show_in_rest' => true ) );
+
+	\register_rest_field(
+		array_values( $post_types ),
+		'template_part',
+		array(
+			'get_callback' => __NAMESPACE__ . '\rest_field_template_part',
+			'schema'       => null,
+		)
+	);
+}
+\add_action( 'rest_api_init', __NAMESPACE__ . '\rest_api_post_fields' );
+
+/**
+ * `template_part` meta field callback
+ *
+ * @param array $object Post object.
+ * @return string
+ */
+function rest_field_template_part( $object ) {
+	return get_template_part( $object['id'] );
+}
+
+\add_filter( 'image_size_names_choose', __NAMESPACE__ . '\block_image_sizes' );
+/**
+ * Add custom image sizes to blocks.
+ *
+ * @param array $sizes Custom image sizes.
+ * @return array
+ */
+function block_image_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'featured' => _x( 'Featured', 'Image size', 'jesus-film-project' ),
+		'card'     => _x( 'Card', 'Image size', 'jesus-film-project' ),
+    ) );
+}

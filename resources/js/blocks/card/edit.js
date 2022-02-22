@@ -331,8 +331,6 @@ export default function edit( { attributes, setAttributes, className, insertBloc
 		className: classes,
 	} );
 
-	console.log( noMedia + ': ' + url );
-
 	return (
 		<>
 			{ controls }
@@ -345,7 +343,7 @@ export default function edit( { attributes, setAttributes, className, insertBloc
 						/>
 					</div>
 				) }
-				{ ( ! noMedia && ! url ) && (
+				{ ( ! noMedia && ( ! url || true ) ) && (
 					<div className="wp-block-jf-card-media">
 						<MediaPlaceholder
 							labels={ {

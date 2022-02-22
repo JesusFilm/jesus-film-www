@@ -14,7 +14,7 @@
 
 		@include mq(m) {
 			width: $layout--width--content;
-			max-width: $layout--max-width--content;
+			max-width: $layout--width--content-narrow;
 		}
 	}
 

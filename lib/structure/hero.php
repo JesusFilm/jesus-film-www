@@ -125,6 +125,8 @@ function hero_title() {
 		$title = \get_the_title();
 	}
 
+	\do_action( 'genesis_hero_before_title' );
+
 	if ( isset( $title ) && $title ) {
 		\genesis_markup(
 			array(
@@ -135,6 +137,8 @@ function hero_title() {
 			)
 		);
 	}
+
+	\do_action( 'genesis_hero_after_title' );
 }
 
 /**

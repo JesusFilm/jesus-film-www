@@ -31,7 +31,7 @@ function do_submenu() {
 	$submenu = \get_post_meta( \get_queried_object_id(), '_jf_submenu', true );
 
 	if ( ! $submenu ) {
-		$submenu = \genesis_get_option( 'page_submenu' );
+		$submenu = \wp_get_nav_menu_name( 'submenu' );
 	}
 
 	if ( ! $submenu ) {
