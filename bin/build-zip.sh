@@ -22,6 +22,9 @@ npm run build || exit "$?"
 echo "Generating translations..."
 mkdir ./assets/lang && npm run i18n || exit "$?"
 
+echo "Installing ZIP and Rsync..."
+sudo apt-get install zip ssh rsync
+
 echo "Syncing files..."
 rsync -rc --exclude-from="$PROJECT_PATH/.distignore" "$PROJECT_PATH/" "$DEST_PATH/" --delete --delete-excluded
 
