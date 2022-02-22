@@ -15,10 +15,8 @@ echo "Generating build directory..."
 rm -rf "$BUILD_PATH"
 mkdir -p "$DEST_PATH"
 
-echo "Installing PHP and JS dependencies..."
+echo "Installing JS dependencies..."
 npm ci
-composer clear-cache
-composer install --no-dev --prefer-dist || exit "$?"
 echo "Running JS Build..."
 npm run build || exit "$?"
 echo "Generating translations..."
