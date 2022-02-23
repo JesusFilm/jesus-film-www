@@ -22,11 +22,11 @@ return array(
 	'breadcrumb_archive'        => 0,
 	'breadcrumb_404'            => 0,
 	'breadcrumb_attachment'     => 0,
-	'content_archive'           => 'full',
+	'content_archive'           => 'excerpts',
 	'content_archive_limit'     => 200,
 	'content_archive_thumbnail' => 1,
 	'image_size'                => 'featured',
 	'image_alignment'           => 'alignnone',
 	'posts_nav'                 => 'numeric',
-	'site_layout'               => 'narrow-content',
+	'site_layout'               => 'full-width-content',
 );
