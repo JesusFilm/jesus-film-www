@@ -11,6 +11,8 @@
 
 namespace Dkjensen\JesusFilmProject;
 
+use WP_Query;
+
 \remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_posts_nav' );
 \remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_adjacent_entry_nav' );
 
@@ -53,6 +55,56 @@ function single_post_header_info() {
 		)
 	);
 
+}
+
+\add_action( 'genesis_after_content_sidebar_wrap', __NAMESPACE__ . '\single_related_posts', 12 );
+/**
+ * Display related posts after single post.
+ *
+ * @return void
+ */
+function single_related_posts() {
+	$related_posts = new \WP_Query( array(
+		'post_type'		=> 'post',
+		'posts_per_page' => 3,
+		'post_status'    => 'publish',
+		'post__not_in'	 => array( \get_queried_object_id() ?? 0 ),
+	) );
+
+	if ( ! $related_posts->have_posts() ) {
+		return;
+	}
+
+	ob_start();
+	?>
+
+	<h2><?php esc_html_e( 'Other blog posts and stories', 'jesus-film-project' ); ?></h2>
+	<div class="related-posts__content">
+		<?php 
+			while ( $related_posts->have_posts() ) {
+				$related_posts->the_post();
+
+				\get_template_part( 'template-parts/content-post', \get_post_type() );
+			}
+
+			\wp_reset_postdata();
+		?>
+	</div>
+	<div class="related-posts__more">
+		<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>" class="button secondary fas fa-arrow-right icon-right"><?php esc_html_e( 'See More', 'jesus-film-project' ); ?></a>
+	</div>
+
+	<?php
+	$content = ob_get_clean();
+
+	\genesis_markup(
+		array(
+			'open'    => '<div %s><div class="wrap">',
+			'close'   => '</div></div>',
+			'content' => $content,
+			'context' => 'related-posts',
+		)
+	);
 }
 
 \genesis();

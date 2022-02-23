@@ -19,7 +19,8 @@
 	font-style: normal;
 }
 
-[class*=" icon-"]:before,[class^="icon-"]:before {
+[class*=" icon-"]:not(.icon-right):before,
+[class^="icon-"]:not(.icon-right):before {
 	display: inline-block;
 	width: 1em;
 	margin-right: 0.2em;

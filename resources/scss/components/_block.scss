@@ -98,8 +98,19 @@
 
 		@include mq($until: s) {
 
-			&:not(.is-not-stacked-on-mobile) > .wp-block-column:not(:last-child) {
+			&:not(.is-not-stacked-on-mobile):not(.reverse-columns-mobile) > .wp-block-column:not(:last-child) {
 				margin-bottom: $gutter;
+			}
+
+			&.reverse-columns-mobile:not(.is-not-stacked-on-mobile) > .wp-block-column:not(:first-child) {
+				margin-bottom: $gutter;
+			}
+		}
+
+		&.reverse-columns-mobile:not(.is-not-stacked-on-mobile) {
+
+			@include mq($until: s) {
+				flex-direction: column-reverse;
 			}
 		}
 	}

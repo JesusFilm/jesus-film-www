@@ -15,15 +15,18 @@ echo "Generating build directory..."
 rm -rf "$BUILD_PATH"
 mkdir -p "$DEST_PATH"
 
+echo "Installing Composer dependencies..."
+composer clear-cache
+composer install --no-dev --prefer-dist
+
 echo "Installing JS dependencies..."
 npm ci
+
 echo "Running JS Build..."
 npm run build || exit "$?"
-echo "Generating translations..."
-mkdir ./assets/lang && npm run i18n || exit "$?"
 
-echo "Installing ZIP and Rsync..."
-sudo apt-get install zip ssh rsync
+echo "Generating translations..."
+npm run i18n || exit "$?"
 
 echo "Syncing files..."
 rsync -rc --exclude-from="$PROJECT_PATH/.distignore" "$PROJECT_PATH/" "$DEST_PATH/" --delete --delete-excluded

@@ -14,7 +14,7 @@
 <article <?php \post_class( 'card' ); ?> id="post-<?php \the_ID(); ?>">
 	<div class="card-top">
 		<a href="<?php \the_permalink(); ?>" title="<?php echo \esc_attr( \get_the_title() ); ?>">
-			<?php \the_post_thumbnail( 'featured' ); ?>
+			<?php \the_post_thumbnail( 'card' ); ?>
 		</a>
 	</div>
 	<div class="card-bottom">

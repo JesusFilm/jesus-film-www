@@ -1,0 +1,25 @@
+////
+/// Related posts component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.related-posts {
+	margin: 0 0 $spacing--xxl;
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: $gutter;
+
+		@include mq(m) {
+			flex-direction: row;
+		}
+	}
+
+	&__more {
+		margin: $spacing--xl auto 0;
+	}
+}
