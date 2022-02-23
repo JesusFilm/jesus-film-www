@@ -4,7 +4,7 @@ const { useSelect, dispatch } = wp.data;
 const { Fragment } = wp.element; // eslint-disable-line
 const { PluginDocumentSettingPanel } = wp.editPost;  // eslint-disable-line
 const { SelectControl, ToggleControl, PanelBody } = wp.components; // eslint-disable-line
-const { InspectorControls } = wp.blockEditor; // eslint-disable-line
+const { InspectorControls, BlockEdit } = wp.blockEditor; // eslint-disable-line
 
 import './blocks';
 
@@ -87,7 +87,7 @@ wp.hooks.addFilter(
 	},
 );
 
-const columnsControls = wp.compose.createHigherOrderComponent( () => {
+const columnsControls = wp.compose.createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
 		const { attributes, setAttributes, isSelected } = props;
 
