@@ -57,6 +57,7 @@ namespace Dkjensen\JesusFilmProject;
 		'functions/defaults',
 		'functions/onboarding',
 		'functions/user-meta',
+		'functions/query',
 
 		// Structure.
 		'structure/archive',
@@ -69,6 +70,7 @@ namespace Dkjensen\JesusFilmProject;
 		'structure/pagination',
 		'structure/single',
 		'structure/wrap',
+		'structure/loops',
 
 		// Shortcodes.
 		'shortcodes/hook',

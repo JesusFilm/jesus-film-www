@@ -57,10 +57,17 @@ if ( ! $regions || \is_wp_error( $regions ) ) {
 			foreach ( $mission_trip_meta as $key => $meta ) {
 				switch ( $key ) {
 					case 'strategies' :
-						$strategies = \get_the_terms( \get_the_ID(), 'strategy' );
+						$strategies = \wp_list_categories( array(
+							'taxonomy'  => 'strategy',
+							'echo'      => false,
+							'separator' => ', ',
+							'style'     => 'list',
+							'title_li'  => '',
+							'use_desc_for_title' => 0,
+						) );
 		
-						if ( $strategies && ! \is_wp_error( $strategies ) ) {
-							$details .= sprintf( "<dt data-meta=\"%s\">%s</dt>\n<dd>%s</dd>\n", \esc_attr( $key ), esc_html__( 'Strategies', 'jesus-film-project' ), esc_html( implode( ', ', \wp_list_pluck( $strategies, 'name' ) ) ) );
+						if ( $strategies ) {
+							$details .= sprintf( "<dt data-meta=\"%s\">%s</dt>\n<dd>%s</dd>\n", \esc_attr( $key ), esc_html__( 'Strategies', 'jesus-film-project' ), "<ul>\n" . $strategies . "\n</ul>" );
 						}
 						break;
 					case 'cost' :

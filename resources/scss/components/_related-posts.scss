@@ -17,6 +17,10 @@
 		@include mq(m) {
 			flex-direction: row;
 		}
+
+		> * {
+			flex: 1;
+		}
 	}
 
 	&__more {

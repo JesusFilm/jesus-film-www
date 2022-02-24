@@ -19,7 +19,7 @@ label {
 	display: inline-block;
 	margin: 0 0 $spacing--s;
 	font-size: $base--font-size;
-	font-weight: $font-weight--semibold;
+	font-weight: $font-weight--light;
 
 	i + &,
 	input + &,
@@ -34,9 +34,9 @@ input,
 select,
 textarea {
 	width: 100%;
-	margin: 0 0 $spacing--s;
+	margin: 0;
 	padding: 1em;
-	border: $base--border;
+	border: 1px solid #d1d1d1;
 	border-radius: $base--border--radius;
 	background-clip: padding-box; // Remove iOS box shadow
 	box-shadow: none;
@@ -52,6 +52,15 @@ textarea {
 		border-color: $color--border;
 		background-color: $color--muted;
 		cursor: not-allowed;
+	}
+
+	&.small {
+		height: 40px;
+		min-height: 40px;
+	}
+
+	&::placeholder {
+		color: $color--gray-600;
 	}
 }
 

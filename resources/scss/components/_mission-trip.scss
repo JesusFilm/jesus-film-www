@@ -67,10 +67,42 @@
 
 		dd {
 			flex-basis: 68%;
+
+			ul {
+				display: block;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			li {
+				display: inline-flex;
+				width: auto;
+
+				&:not(:last-child):after {
+					content: ", ";
+				}
+			}
 		}
 
 		[data-status="Open"] {
 			color: $color--cyan;
+		}
+	}
+
+	&-archive-footer {
+		margin: $spacing--xxl 0 0;
+		padding: $spacing--xxl 0;
+		color: $color--white;
+		background: url("assets/img/go-form.png") center/cover no-repeat;
+
+		&__content {
+			width: 100%;
+
+			@include mq(m) {
+				display: flex;
+				justify-content: space-between;
+			}
 		}
 	}
 }

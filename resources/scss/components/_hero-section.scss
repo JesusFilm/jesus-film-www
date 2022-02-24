@@ -11,7 +11,6 @@
 	width: 100%;
 	margin: 0 0 $spacing--xxl;
 	padding: 12rem 0 $gutter;
-	border-bottom: $base--border;
 	color: $color--white;
 	background-position: center;
 	background-size: cover;
@@ -36,6 +35,10 @@
 	h5,
 	h6 {
 		color: $color--white;
+
+		a {
+			color: inherit;
+		}
 	}
 
 	h5 {

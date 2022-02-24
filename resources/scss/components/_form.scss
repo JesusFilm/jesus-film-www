@@ -1,0 +1,31 @@
+////
+/// Form component.
+///
+/// @group  Components
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+
+.form {
+
+	&-newsletter {
+		display: flex;
+		gap: $gutter;
+		flex-direction: column;
+		align-items: flex-start;
+
+		&.horizontal {
+			gap: 1rem;
+
+			@include mq(m) {
+				flex-direction: row;
+				gap: $gutter;
+				justify-content: flex-end;
+			}
+		}
+
+		.form-group {
+			width: 100%;
+		}
+	}
+}

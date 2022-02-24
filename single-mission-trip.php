@@ -16,23 +16,23 @@ namespace Dkjensen\JesusFilmProject;
 \remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_posts_nav' );
 \remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_adjacent_entry_nav' );
 
-\add_action( 'genesis_hero_before_title', __NAMESPACE__ . '\hero_prefix' );
+\add_action( 'genesis_hero_section', __NAMESPACE__ . '\single_mission_trip_hero_prefix', 8 );
 /**
  * Before hero title
  *
  * @return void
  */
-function hero_prefix() {
-    printf( '<h5>%s /</h5>', esc_html__( 'GO', 'jesus-film-project' ) );
+function single_mission_trip_hero_prefix() {
+    printf( '<h5><a href="%s">%s /</a></h5>', \esc_url( \get_permalink( \get_page_by_path( '/partners/mission-trips/' ) ) ), esc_html__( 'GO', 'jesus-film-project' ) );
 }
 
-\add_action( 'genesis_hero_after_title', __NAMESPACE__ . '\hero_suffix' );
+\add_action( 'genesis_hero_after_title', __NAMESPACE__ . '\single_mission_trip_hero_suffix' );
 /**
  * After hero title
  *
  * @return void
  */
-function hero_suffix() {
+function single_mission_trip_hero_suffix() {
     $start_date = \DateTime::createFromFormat( 'Ymd', \get_post_meta( \get_the_ID(), 'date_start', true ) );
     $end_date = \DateTime::createFromFormat( 'Ymd', \get_post_meta( \get_the_ID(), 'date_end', true ) );
 
@@ -47,9 +47,13 @@ function hero_suffix() {
     
 }
 
-\add_action( 'genesis_entry_content', __NAMESPACE__ . '\mission_trip_details', 5 );
-
-function mission_trip_details() {
+\add_action( 'genesis_entry_content', __NAMESPACE__ . '\single_mission_trip_details', 5 );
+/**
+ * Output the mission trip specs.
+ *
+ * @return void
+ */
+function single_mission_trip_details() {
     $mission_trip_meta = \get_post_meta( \get_the_ID() );
 
     $details = '<dl class="mission-trip-specs">';
@@ -64,10 +68,17 @@ function mission_trip_details() {
                 }
                 break;
             case 'strategies' :
-                $strategies = \get_the_terms( \get_the_ID(), 'strategy' );
+                $strategies = \wp_list_categories( array(
+                    'taxonomy'  => 'strategy',
+                    'echo'      => false,
+                    'separator' => ', ',
+                    'style'     => 'list',
+                    'title_li'  => '',
+                    'use_desc_for_title' => 0,
+                ) );
 
-                if ( $strategies && ! \is_wp_error( $strategies ) ) {
-                    $details .= sprintf( "<dt data-meta=\"%s\">%s</dt>\n<dd>%s</dd>\n", \esc_attr( $key ), esc_html__( 'Strategies', 'jesus-film-project' ), esc_html( implode( ', ', \wp_list_pluck( $strategies, 'name' ) ) ) );
+                if ( $strategies ) {
+                    $details .= sprintf( "<dt data-meta=\"%s\">%s</dt>\n<dd>%s</dd>\n", \esc_attr( $key ), esc_html__( 'Strategies', 'jesus-film-project' ), "<ul>\n" . $strategies . "\n</ul>" );
                 }
                 break;
             case 'location' :
@@ -96,7 +107,7 @@ function mission_trip_details() {
 	);
 }
 
-\add_filter( 'genesis_site_layout', __NAMESPACE__ . '\mission_trip_site_layout' );
+\add_filter( 'genesis_site_layout', __NAMESPACE__ . '\single_mission_trip_site_layout' );
 /**
  * Site layout.
  *
@@ -104,7 +115,7 @@ function mission_trip_details() {
  * 
  * @return string
  */
-function mission_trip_site_layout( $layout ) {
+function single_mission_trip_site_layout( $layout ) {
 	return 'content-sidebar';
 }
 

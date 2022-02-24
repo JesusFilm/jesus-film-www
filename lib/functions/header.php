@@ -75,6 +75,10 @@ function header() {
 		$url = \get_the_post_thumbnail_url( $id, 'hero' );
 	}
 
+	if ( is_type_archive() && 'mission-trip' === \get_query_var( 'post_type' ) ) {
+		$url = \get_theme_file_uri( 'assets/img/mission-trip-banner.jpg' );
+	}
+
 	if ( ! $url ) {
 		$url = \get_header_image();
 	}

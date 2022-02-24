@@ -394,7 +394,12 @@
 		&.is-flex-container {
 			gap: $gutter;
 
+			li {
+				width: auto;
+			}
+
 			> li {
+				width: 100%;
 
 				@include margin(null 0);
 			}

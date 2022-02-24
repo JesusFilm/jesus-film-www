@@ -33,10 +33,12 @@ function post_archive_header() {
  * @return void
  */
 function post_archive_header_markup() {
+	global $wp_query;
+
 	if ( 'page' === \get_option( 'show_on_front' ) && \get_option( 'page_for_posts' ) ) {
 		$blog = \get_post( \get_option( 'page_for_posts' ) );
 
-		if ( $blog ) {
+		if ( $blog && 'post' === ( $wp_query->query_vars['post_type'] ?: 'post' ) ) {
 			\genesis_markup(
 				array(
 					'open'    => '<section class="post-archive-header">',

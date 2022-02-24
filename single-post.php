@@ -11,8 +11,6 @@
 
 namespace Dkjensen\JesusFilmProject;
 
-use WP_Query;
-
 \remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_posts_nav' );
 \remove_action( 'genesis_after_content_sidebar_wrap', 'genesis_adjacent_entry_nav' );
 
