@@ -24,10 +24,6 @@ namespace Dkjensen\JesusFilmProject\Structure;
  * @return void
  */
 function do_submenu() {
-	if ( ! \is_singular( 'page' ) ) {
-		return;
-	}
-
 	$submenu = \get_post_meta( \get_queried_object_id(), '_jf_submenu', true );
 
 	if ( ! $submenu ) {

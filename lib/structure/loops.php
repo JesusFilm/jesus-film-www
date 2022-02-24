@@ -38,9 +38,9 @@ function do_loop() {
 
 		\genesis_custom_loop( $query_args );
 	} else {
-        $post_type = $wp_query->query_vars['post_type'] ?: 'post';
+        $post_type = $wp_query->query_vars['post_type'] ?? false;
 
-        if ( $wp_query->is_main_query() && false !== (bool) \locate_template( 'template-parts/content-' . $post_type . '.php' ) ) {
+        if ( $wp_query->is_main_query() && $post_type && false !== (bool) \locate_template( 'template-parts/content-' . $post_type . '.php' ) ) {
 
             if ( \have_posts() ) {
 
