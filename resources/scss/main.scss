@@ -13,6 +13,14 @@
 ////
 
 @import "~bourbon";
+
+// Remove `button` from buttons list
+$_buttons-list: (
+	"[type='reset']",
+	"[type='submit']",
+);
+$all-buttons: _assign-inputs($_buttons-list);
+
 @import "settings/_index";
 @import "tools/_index";
 @import "generic/_index";

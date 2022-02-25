@@ -20,7 +20,7 @@ namespace Dkjensen\JesusFilmProject\Structure;
  * @return void
  */
 function hero_setup() {
-	if ( \is_admin() || ! \current_theme_supports( 'hero-section' ) || ! \post_type_supports( \get_post_type(), 'hero-section' ) || \genesis_entry_header_hidden_on_current_page() ) {
+	if ( \is_admin() || ! \current_theme_supports( 'hero-section' ) || ! \post_type_supports( \get_post_type(), 'hero-section' ) || \genesis_entry_header_hidden_on_current_page() || \is_search() ) {
 		return;
 	}
 
@@ -184,8 +184,8 @@ function hero_excerpt() {
 	if ( $excerpt ) {
 		\genesis_markup(
 			array(
-				'open'    => '<p %s itemprop="description">',
-				'close'   => '</p>',
+				'open'    => '<h5 %s itemprop="description">',
+				'close'   => '</h5>',
 				'content' => $excerpt,
 				'context' => 'hero-subtitle',
 			)
@@ -209,8 +209,8 @@ function do_archive_headings_intro_text( $heading = '', $intro_text = '', $conte
 	if ( $context && $intro_text ) {
 		\genesis_markup(
 			array(
-				'open'    => '<p %s itemprop="description">',
-				'close'   => '</p>',
+				'open'    => '<h5 %s itemprop="description">',
+				'close'   => '</h5>',
 				'content' => $intro_text,
 				'context' => 'hero-subtitle',
 			)

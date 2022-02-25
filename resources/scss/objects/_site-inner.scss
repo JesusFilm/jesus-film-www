@@ -23,9 +23,21 @@
 		}
 	}
 
-	.blog & {
+	.blog &,
+	.post-type-archive-news & {
 		background: $color--tan;
 
+		@include padding(0 0 $gutter * 2);
+	}
+
+	.blog & {
+
 		@include padding($gutter * 2 0);
+	}
+
+	.error404 &,
+	.search & {
+		padding-bottom: $spacing--xxl;
+		background-color: $color--tan;
 	}
 }

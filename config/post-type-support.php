@@ -19,9 +19,9 @@ return array(
 		'genesis-singular-images'       => array( 'page', 'post' ),
 		'genesis-title-toggle'          => array( 'post', 'product' ),
 		'genesis-adjacent-entry-nav'    => array( 'post', 'product' ),
-		'hero-section'                  => array( 'mission-trip' ),
+		'hero-section'                  => array( 'mission-trip', 'news' ),
 		'custom-fields'                 => array( 'page' ),
-		'genesis-cpt-archives-settings' => array( 'post', 'tribe_events' ),
+		'genesis-cpt-archives-settings' => array( 'post', 'tribe_events', 'news' ),
 	),
 	'remove' => array(),
 );

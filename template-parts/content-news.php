@@ -1,6 +1,6 @@
 <?php
 /**
- * Post template part.
+ * News template part.
  *
  * @package   Dkjensen\JesusFilmProject
  * @link      https://dkjensen.com

@@ -20,9 +20,9 @@ namespace Dkjensen\JesusFilmProject\Structure;
  * @return void
  */
 function do_loop() {
-    global $wp_query;
+	global $wp_query;
 
-    if ( \is_singular( 'page' ) && \genesis_get_custom_field( 'query_args' ) ) {
+	if ( \is_singular( 'page' ) && \genesis_get_custom_field( 'query_args' ) ) {
 
 		$paged = \get_query_var( 'paged' ) ?: 1;
 
@@ -31,36 +31,34 @@ function do_loop() {
 		 */
 		$query_args = \wp_parse_args(
 			\genesis_get_custom_field( 'query_args' ),
-			[
+			array(
 				'paged' => $paged,
-			]
+			)
 		);
 
 		\genesis_custom_loop( $query_args );
 	} else {
-        $post_type = $wp_query->query_vars['post_type'] ?? false;
+		$post_type = $wp_query->query_vars['post_type'] ?? false;
 
-        if ( $wp_query->is_main_query() && $post_type && false !== (bool) \locate_template( 'template-parts/content-' . $post_type . '.php' ) ) {
+		if ( $wp_query->is_main_query() && ! $wp_query->is_singular() && $post_type && false !== (bool) \locate_template( 'template-parts/content-' . $post_type . '.php' ) ) {
 
-            if ( \have_posts() ) {
+			if ( \have_posts() ) {
 
-                \do_action( 'genesis_before_while' );
-        
-                while ( \have_posts() ) {
-                    \the_post();
-        
-                    \get_template_part( 'template-parts/content', \get_post_type() );
-                }
-        
-                \do_action( 'genesis_after_endwhile' );
-        
-            } else {
-                \do_action( 'genesis_loop_else' );
-            }
-
-        } else {
-            \genesis_standard_loop();
-        }
-
+				\do_action( 'genesis_before_while' );
+		
+				while ( \have_posts() ) {
+					\the_post();
+		
+					\get_template_part( 'template-parts/content', \get_post_type() );
+				}
+		
+				\do_action( 'genesis_after_endwhile' );
+		
+			} else {
+				\do_action( 'genesis_loop_else' );
+			}       
+		} else {
+			\genesis_standard_loop();
+		}   
 	}
 }

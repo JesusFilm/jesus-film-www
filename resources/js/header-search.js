@@ -1,5 +1,6 @@
 const headerSearchForm = document.getElementById( 'header-search' );
 const headerSearchToggle = document.querySelectorAll( '[data-header-search-toggle]' );
+const searchPageSearchForm = document.querySelector( 'body.search #header-search' ) ?? null;
 
 headerSearchToggle.forEach( ( toggle ) => {
 	toggle.addEventListener( 'click', function( e ) {
@@ -17,3 +18,10 @@ headerSearchToggle.forEach( ( toggle ) => {
 		}
 	} );
 } );
+
+if ( searchPageSearchForm ) {
+	setTimeout( () => {
+		headerSearchForm.classList.remove( 'hidden' );
+		headerSearchForm.setAttribute( 'aria-expanded', 'true' );
+	}, 250 );
+}

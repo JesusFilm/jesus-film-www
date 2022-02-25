@@ -11,28 +11,8 @@
 
 namespace Dkjensen\JesusFilmProject;
 
-
-
 \add_action( 'genesis_meta', __NAMESPACE__ . '\archive_mission_trip_hero_setup', 15 );
 
-function archive_mission_trip_hero_setup() {
-    \remove_action( 'genesis_archive_title_descriptions', __NAMESPACE__ . '\Structure\do_archive_headings_intro_text', 12 );
-    \add_action( 'genesis_archive_title_descriptions', __NAMESPACE__ . '\archive_mission_trip_hero_description', 12, 3 );
-}
-
-function archive_mission_trip_hero_description( $heading = '', $intro_text = '', $context = '' ) {
-
-	if ( $context && $intro_text ) {
-		\genesis_markup(
-			array(
-				'open'    => '<h5 %s itemprop="description">',
-				'close'   => '</h5>',
-				'content' => $intro_text,
-				'context' => 'hero-subtitle',
-			)
-		);
-	}
-}
 
 \add_action( 'genesis_hero_section', __NAMESPACE__ . '\archive_mission_trip_hero_prefix', 8 );
 /**
@@ -41,7 +21,7 @@ function archive_mission_trip_hero_description( $heading = '', $intro_text = '',
  * @return void
  */
 function archive_mission_trip_hero_prefix() {
-    printf( '<h5><a href="%s">%s /</a></h5>', \esc_url( \get_permalink( \get_page_by_path( '/partners/mission-trips/' ) ) ), esc_html__( 'GO', 'jesus-film-project' ) );
+	printf( '<h5><a href="%s">%s /</a></h5>', \esc_url( \get_permalink( \get_page_by_path( '/partners/mission-trips/' ) ) ), esc_html__( 'GO', 'jesus-film-project' ) );
 }
 
 \add_action( 'genesis_before_footer', __NAMESPACE__ . '\archive_mission_trip_footer' );
@@ -67,7 +47,7 @@ function archive_mission_trip_footer() {
 
 	<div class="mission-trip-archive-footer__content">
 		<div class="one-half first">
-			<h3 class="has-text-color has-white-color"><?php \single_term_title( esc_html__( 'About', 'jesus-film-project' ) . " " ); ?></h3>
+			<h3 class="has-text-color has-white-color"><?php \single_term_title( esc_html__( 'About', 'jesus-film-project' ) . ' ' ); ?></h3>
 			<div><?php echo apply_filters( 'comment_text', $copy ); ?></div>
 		</div>
 		<div class="one-third">
