@@ -17,6 +17,7 @@
 		url("assets/fonts/jfm.woff2") format("woff2");
 	font-weight: $font-weight--regular;
 	font-style: normal;
+	font-display: swap;
 }
 
 [class*=" icon-"]:not(.icon-right):before,

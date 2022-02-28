@@ -43,5 +43,6 @@ return array(
 	),
 	'remove' => array(
 		'global-styles',
+		'tribe-events-pro-mini-calendar-block-styles',
 	),
 );

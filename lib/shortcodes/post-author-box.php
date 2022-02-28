@@ -44,20 +44,13 @@ function post_author_box_shortcode( $atts, $content = '' ) {
 
 	$author = new Post_Author( $author );
 
-	$show_avatars = \get_option( 'show_avatars' );
-
 	ob_start();
 	?>
 
 	<div class="entry-author-box">
-		<?php if ( $show_avatars ) : ?>
-
 		<a href="<?php echo \esc_url( $author->get_author_url() ); ?>" class="entry-author-box-avatar" title="<?php echo sprintf( \esc_attr( 'Show posts by %s' ), $author->get_name() ); ?>">
 			<img src="<?php echo \esc_url( $author->get_avatar_url() ); ?>" />
 		</a>
-
-		<?php endif; ?>
-
 		<a href="<?php echo \esc_url( $author->get_author_url() ); ?>" class="entry-author-box-name" title="<?php echo sprintf( \esc_attr( 'Show posts by %s' ), $author->get_name() ); ?>">
 			<?php echo \esc_html( $author->get_name() ); ?>
 		</a>
