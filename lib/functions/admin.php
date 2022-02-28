@@ -20,29 +20,28 @@ namespace Dkjensen\JesusFilmProject\Functions;
  */
 function remove_post_author_column( $columns ) {
 	unset( $columns['author'] );
-	$columns['jf_author'] = esc_html__( 'Author', 'jesus-film-project' );
 
 	return $columns;
 }
 
-\add_action( 'manage_posts_custom_column', __NAMESPACE__ . '\post_author_jf_column', 10, 2 );
+\add_filter( 'map_meta_cap', __NAMESPACE__ . '\allow_unfiltered_html', 1, 3 );
 /**
- * Custom author column output
+ * Allow unfiltered HTML for admins
  *
- * @param string $column_name Column name.
- * @param int    $post_id Post ID.
- * @return void
+ * @param array  $capabilities Capabilities for user/role.
+ * @param string $capability Capability to compare.
+ * @param int    $user_id User ID.
+ * @return array
  */
-function post_author_jf_column( $column_name, $post_id ) {
-	$post = \get_post( $post_id );
-
-	if ( 'jf_author' === $column_name ) {
-		$author = current( (array) \wp_get_post_terms( $post->ID, 'jf_author', array( 'hide_empty' => false ) ) );
-
-		if ( $author && isset( $author->term_id ) ) {
-			printf( '<a href="%s">%s</a>', add_query_arg( array( 'jf_author' => $author->slug ), 'edit.php' ), esc_html( $author->name ) );
-		}
+function allow_unfiltered_html( $capabilities, $capability, $user_id ) {
+	if ( 'unfiltered_html' === $capability && \user_can( $user_id, 'manage_options' ) ) {
+		$capabilities = array( 'unfiltered_html' );
 	}
 
-	\wp_reset_postdata();
+	return $capabilities;
 }
+
+/**
+ * Allow ACF unfiltered HTML
+ */
+\add_filter( 'acf/allow_unfiltered_html', '__return_true' );

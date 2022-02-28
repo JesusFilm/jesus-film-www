@@ -11,9 +11,6 @@
 
 namespace Dkjensen\JesusFilmProject;
 
-\add_action( 'genesis_meta', __NAMESPACE__ . '\archive_mission_trip_hero_setup', 15 );
-
-
 \add_action( 'genesis_hero_section', __NAMESPACE__ . '\archive_mission_trip_hero_prefix', 8 );
 /**
  * Before hero title

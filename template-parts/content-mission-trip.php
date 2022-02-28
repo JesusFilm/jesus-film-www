@@ -35,15 +35,15 @@ if ( ! $regions || \is_wp_error( $regions ) ) {
 			<div class="subheading">
 				<?php
 					$start_date = \DateTime::createFromFormat( 'Ymd', \get_post_meta( \get_the_ID(), 'date_start', true ) );
-					$end_date = \DateTime::createFromFormat( 'Ymd', \get_post_meta( \get_the_ID(), 'date_end', true ) );
+					$end_date   = \DateTime::createFromFormat( 'Ymd', \get_post_meta( \get_the_ID(), 'date_end', true ) );
 				
-					if ( $start_date && $end_date ) {
-						printf( '%s - %s', \esc_html( $start_date->format( 'F j, Y' ) ), \esc_html( $end_date->format( 'F j, Y' ) ) );
-					} elseif ( $start_date && ! $end_date ) {
-						printf( '%s %s', \esc_html__( 'Starting', 'jesus-film-project' ), \esc_html( $start_date->format( 'F j, Y' ) ) );
-					} elseif ( ! $start_date && $end_date ) {
-						printf( '%s %s', \esc_html__( 'Thru', 'jesus-film-project' ), \esc_html( $end_date->format( 'F j, Y' ) ) );
-					}
+				if ( $start_date && $end_date ) {
+					printf( '%s - %s', \esc_html( $start_date->format( 'F j, Y' ) ), \esc_html( $end_date->format( 'F j, Y' ) ) );
+				} elseif ( $start_date && ! $end_date ) {
+					printf( '%s %s', \esc_html__( 'Starting', 'jesus-film-project' ), \esc_html( $start_date->format( 'F j, Y' ) ) );
+				} elseif ( ! $start_date && $end_date ) {
+					printf( '%s %s', \esc_html__( 'Thru', 'jesus-film-project' ), \esc_html( $end_date->format( 'F j, Y' ) ) );
+				}
 				?>
 			</div>
 		</div>
@@ -54,30 +54,32 @@ if ( ! $regions || \is_wp_error( $regions ) ) {
 
 			$details = '<dl class="mission-trip-specs">';
 		
-			foreach ( $mission_trip_meta as $key => $meta ) {
-				switch ( $key ) {
-					case 'strategies' :
-						$strategies = \wp_list_categories( array(
-							'taxonomy'  => 'strategy',
-							'echo'      => false,
-							'separator' => ', ',
-							'style'     => 'list',
-							'title_li'  => '',
-							'use_desc_for_title' => 0,
-						) );
-		
-						if ( $strategies ) {
-							$details .= sprintf( "<dt data-meta=\"%s\">%s</dt>\n<dd>%s</dd>\n", \esc_attr( $key ), esc_html__( 'Strategies', 'jesus-film-project' ), "<ul>\n" . $strategies . "\n</ul>" );
-						}
-						break;
-					case 'cost' :
-						$details .= sprintf( "<dt data-meta=\"%s\">%s</dt>\n<dd>%s</dd>\n", \esc_attr( $key ), esc_html__( 'Cost', 'jesus-film-project' ), esc_html( current( $meta ) ) );
-						break;
-					case 'status' :
-						$details .= sprintf( "<dt data-meta=\"%1\$s\">%2\$s</dt>\n<dd data-status=\"%3\$s\">%3\$s</dd>\n", \esc_attr( $key ), esc_html__( 'Status', 'jesus-film-project' ), esc_html( ucfirst( current( $meta ) ) ) );
-						break;
-				}
+		foreach ( $mission_trip_meta as $key => $meta ) {
+			switch ( $key ) {
+				case 'strategies':
+					$strategies = wp_get_post_terms( \get_the_ID(), 'strategy', array( 'hide_empty' => false ) );
+
+					if ( $strategies && ! \is_wp_error( $strategies ) ) {
+						$strategies = array_map(
+							function( $strategy ) {
+
+								return sprintf( '<a href="%s">%s</a>', get_term_link( $strategy->term_id, 'strategy' ), esc_html( $strategy->name ) );
+
+							},
+							$strategies 
+						);
+
+						$details .= sprintf( "<dt data-meta=\"%s\">%s</dt>\n<dd>%s</dd>\n", \esc_attr( $key ), esc_html__( 'Strategies', 'jesus-film-project' ), "<ul>\n" . implode( ', ', $strategies ) . "\n</ul>" );
+					}
+					break;
+				case 'cost':
+					$details .= sprintf( "<dt data-meta=\"%s\">%s</dt>\n<dd>%s</dd>\n", \esc_attr( $key ), esc_html__( 'Cost', 'jesus-film-project' ), esc_html( current( $meta ) ) );
+					break;
+				case 'status':
+					$details .= sprintf( "<dt data-meta=\"%1\$s\">%2\$s</dt>\n<dd data-status=\"%3\$s\">%3\$s</dd>\n", \esc_attr( $key ), esc_html__( 'Status', 'jesus-film-project' ), esc_html( ucfirst( current( $meta ) ) ) );
+					break;
 			}
+		}
 		
 			$details .= '</dl>' . "\n";
 

@@ -11,6 +11,24 @@
 
 namespace Dkjensen\JesusFilmProject\Functions;
 
+\add_action( 'pre_get_posts', __NAMESPACE__ . '\mission_trip_query_args' );
+/**
+ * Mission trip taxonomies query mission-trip post type
+ *
+ * @return void
+ */
+function mission_trip_query_args( $query ) {
+	if ( ! $query->is_main_query() || \is_admin() ) {
+		return;
+	}
+
+	if ( \is_tax( 'region' ) || \is_tax( 'strategy' ) ) {
+		$query->set( 'post_type', 'mission-trip' );
+	}
+
+	\flush_rewrite_rules();
+}
+
 \add_filter( 'posts_join', __NAMESPACE__ . '\post_author_join', 10, 2 );
 /**
  * Join term_relationships table on author query.
