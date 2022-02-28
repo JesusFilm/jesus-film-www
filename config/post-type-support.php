@@ -23,5 +23,7 @@ return array(
 		'custom-fields'                 => array( 'page' ),
 		'genesis-cpt-archives-settings' => array( 'post', 'tribe_events', 'news' ),
 	),
-	'remove' => array(),
+	'remove' => array(
+		'author' => array( 'post' ),
+	),
 );

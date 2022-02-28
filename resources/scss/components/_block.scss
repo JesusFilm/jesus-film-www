@@ -396,12 +396,13 @@
 
 			li {
 				width: auto;
+				margin: 0;
 			}
 
 			> li {
 				width: 100%;
 
-				@include margin(null 0);
+				@include margin(null 0 $gutter);
 			}
 		}
 	}

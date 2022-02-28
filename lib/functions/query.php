@@ -11,21 +11,62 @@
 
 namespace Dkjensen\JesusFilmProject\Functions;
 
+\add_filter( 'posts_join', __NAMESPACE__ . '\post_author_join', 10, 2 );
+/**
+ * Join term_relationships table on author query.
+ *
+ * @param string   $join Default JOIN clause.
+ * @param WP_Query $query WP_Query object.
+ * @return string
+ */
+function post_author_join( $join, $query ) {
+	global $wpdb;
+	
+	if ( ! \is_admin() && ! empty( $query->query_vars['author_name'] ) ) {
+		$join .= " LEFT JOIN {$wpdb->term_relationships} AS tt99 ON ( {$wpdb->posts}.ID = tt99.object_id ) ";
+	}
 
-\add_action( 'init', __NAMESPACE__ . '\mission_trip_rewrite_rules' );
+	return $join;
+}
 
-function mission_trip_rewrite_rules() {
-    $regions = \get_terms( array( 'taxonomy' => 'region', 'hide_empty' => false, 'fields' => 'slugs' ) );
+\add_filter( 'posts_where', __NAMESPACE__ . '\post_author_where', 10, 2 );
+/**
+ * Only shows posts associated with a given author from jf_author taxonomy.
+ *
+ * @param string   $where Default WHERE clause.
+ * @param WP_Query $query WP_Query object.
+ * @return string
+ */
+function post_author_where( $where, $query ) {
+	global $wpdb;
 
-    foreach ( $regions as $region ) {
-        add_rewrite_rule( 'partners/mission-trips/(' . $region . ')/?$', 'index.php?region=$matches[1]&post_type=mission-trip', 'top' );
-    }
+	if ( ! \is_admin() && ! empty( $query->query_vars['author_name'] ) ) {
+		$author = \get_term_by( 'slug', $query->query_vars['author_name'], 'jf_author' );
 
-    $strategies = \get_terms( array( 'taxonomy' => 'strategy', 'hide_empty' => false, 'fields' => 'slugs' ) );
+		if ( $author && ! \is_wp_error( $author ) ) {
+			$where = \preg_replace( '/wp_posts\.post_author([\s]+)=([\s]+)?([\d]+)([\s]+)?/', $wpdb->prepare( ' tt99.term_taxonomy_id IN (%d) ', $author->term_id ), $where, 1 );
+		} else {
+			$where .= ' AND 1 = 2 ';
+		}
+	}
 
-    foreach ( $strategies as $strategy ) {
-        add_rewrite_rule( 'partners/mission-trips/(' . $strategy . ')/?$', 'index.php?strategy=$matches[1]&post_type=mission-trip', 'top' );
-    }
+	return $where;
+}
 
-    \flush_rewrite_rules();
+\add_filter( 'posts_distinct', __NAMESPACE__ . '\post_author_distinct', 10, 2 );
+/**
+ * Force posts by author to be distinct
+ *
+ * @param string   $distinct Whether query should return distinct results.
+ * @param WP_Query $query WP_Query object.
+ * @return string
+ */
+function post_author_distinct( $distinct, $query ) {
+	global $wpdb;
+
+	if ( ! \is_admin() && ! empty( $query->query_vars['author_name'] ) ) {
+		return 'DISTINCT';
+	}
+
+	return $distinct;
 }

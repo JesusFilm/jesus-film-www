@@ -58,6 +58,7 @@ namespace Dkjensen\JesusFilmProject;
 		'functions/onboarding',
 		'functions/user-meta',
 		'functions/query',
+		'functions/admin',
 
 		// Structure.
 		'structure/archive',
