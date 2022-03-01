@@ -62,7 +62,7 @@ function post_author_where( $where, $query ) {
 		$author = \get_term_by( 'slug', $query->query_vars['author_name'], 'jf_author' );
 
 		if ( $author && ! \is_wp_error( $author ) ) {
-			$where = \preg_replace( '/wp_posts\.post_author([\s]+)=([\s]+)?([\d]+)([\s]+)?/', $wpdb->prepare( ' tt99.term_taxonomy_id IN (%d) ', $author->term_id ), $where, 1 );
+			$where = \preg_replace( "/{$wpdb->posts}\.post_author([\s]+)=([\s]+)?([\d]+)([\s]+)?/", $wpdb->prepare( ' tt99.term_taxonomy_id IN (%d) ', $author->term_id ), $where, 1 );
 		} else {
 			$where .= ' AND 1 = 2 ';
 		}
