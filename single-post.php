@@ -42,6 +42,15 @@ function single_post_header_info() {
 	echo do_shortcode( '[post_author_box]' );
 	echo do_shortcode( '[share_post]' );
 
+	\genesis_markup(
+		array(
+			'open'    => '<div %s>',
+			'close'   => '</div>',
+			'content' => do_shortcode( '[post_date] · [post_categories sep=", " before=""]' ),
+			'context' => 'entry-post-header-info__meta',
+		)
+	);
+
 	$content = ob_get_clean();
 
 	\genesis_markup(
@@ -62,12 +71,14 @@ function single_post_header_info() {
  * @return void
  */
 function single_related_posts() {
-	$related_posts = new \WP_Query( array(
-		'post_type'		=> 'post',
-		'posts_per_page' => 3,
-		'post_status'    => 'publish',
-		'post__not_in'	 => array( \get_queried_object_id() ?? 0 ),
-	) );
+	$related_posts = new \WP_Query(
+		array(
+			'post_type'      => 'post',
+			'posts_per_page' => 3,
+			'post_status'    => 'publish',
+			'post__not_in'   => array( \get_queried_object_id() ?? 0 ),
+		) 
+	);
 
 	if ( ! $related_posts->have_posts() ) {
 		return;
@@ -79,11 +90,11 @@ function single_related_posts() {
 	<h2><?php esc_html_e( 'Other blog posts and stories', 'jesus-film-project' ); ?></h2>
 	<div class="related-posts__content">
 		<?php 
-			while ( $related_posts->have_posts() ) {
-				$related_posts->the_post();
+		while ( $related_posts->have_posts() ) {
+			$related_posts->the_post();
 
-				\get_template_part( 'template-parts/content-post', \get_post_type() );
-			}
+			\get_template_part( 'template-parts/content-post', \get_post_type() );
+		}
 
 			\wp_reset_postdata();
 		?>

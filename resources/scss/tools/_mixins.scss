@@ -364,6 +364,22 @@
 }
 
 ////
+/// Subheading mixin
+///
+/// @group  Tools
+/// @author David Jensen <david@dkjensen.com>
+/// @link   https://github.com/dkjensen/jesus-film-project
+////
+@mixin subheading {
+	color: rgba($color--black, 0.4);
+	font-size: 1.2rem;
+	font-weight: $font-weight--regular;
+	line-height: 2;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+////
 /// Button mixin
 ///
 /// Used for both front end and block editor styling.
