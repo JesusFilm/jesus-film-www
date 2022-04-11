@@ -13,6 +13,10 @@
 
 namespace Dkjensen\JesusFilmProject;
 
+\remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
+\remove_action( 'genesis_entry_header', 'Dkjensen\\JesusFilmProject\\Structure\\entry_meta' );
+\remove_action( 'genesis_entry_footer', 'Dkjensen\\JesusFilmProject\\Structure\\entry_footer_post_meta' );
+
 \remove_action( 'genesis_after_title_area', 'genesis_do_nav' );
 \remove_action( 'genesis_before_header_wrap', 'Dkjensen\\JesusFilmProject\\Structure\\before_header_widget' );
 \remove_action( 'genesis_after_title_area', 'Dkjensen\\JesusFilmProject\\Structure\\primary_menu_search_bar' );
