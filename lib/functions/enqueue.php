@@ -70,3 +70,27 @@ function deregister_scripts() {
 		\wp_deregister_script( $asset );
 	}
 }
+
+/**
+ * Redirect to URL if query parameter is provided.
+ *
+ * @return void
+ */
+function branded_checkout_redirect_callback() {
+	?>
+
+	<script>
+		function brandedCheckoutRedirect() {
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const maybeRedirect = urlParams.get('thankYouRedirect');
+			if (maybeRedirect && maybeRedirect.length > 0) {
+				window.location = maybeRedirect;
+			}
+		}
+		window.onOrderCompleted = function () { brandedCheckoutRedirect(); };
+	</script>
+
+	<?php
+}
+\add_action( 'wp_footer', __NAMESPACE__ . '\branded_checkout_redirect_callback' );
