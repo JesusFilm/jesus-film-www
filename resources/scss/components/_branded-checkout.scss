@@ -1,0 +1,13 @@
+.branded-checkout {
+
+	&-header {
+		text-align: center;
+
+		+ .site-inner {
+
+			> .wrap {
+				max-width: 810px;
+			}
+		}
+	}
+}
