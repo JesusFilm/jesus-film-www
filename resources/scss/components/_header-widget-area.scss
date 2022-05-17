@@ -7,14 +7,17 @@
 ////
 
 .header-widget-area {
+	display: flex;
 	margin-right: $gap;
 	margin-left: auto;
+	justify-content: flex-end;
 
 	@include mq($until: m) {
 		display: none;
 	}
 
 	@include mq(m) {
+		min-width: 16rem;
 		margin: 0;
 		order: 3;
 	}
