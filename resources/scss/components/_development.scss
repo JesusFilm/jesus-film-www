@@ -11,7 +11,7 @@
 	.bgimage-container {
 		display: flex;
 		margin: 0 auto;
-		padding: 0 20px;
+		padding: 0;
 		background-position: center;
 		background-size: cover;
 		flex-wrap: wrap;
@@ -23,17 +23,83 @@
 		}
 	}
 
+
+	.image.parbase {
+
+		&.card {
+			height: auto !important;
+			padding: 20px !important;
+		}
+
+		br {
+			display: none;
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.parsys[class*="video"] {
+		width: 100%;
+	}
+
+	.modular.parsys {
+		max-width: 100%;
+	}
+
+	.button {
+
+		&.parsys {
+			margin: 0 0 1.5em;
+			margin-right: auto !important;
+			margin-left: auto !important;
+			padding: 0;
+			border: 1px solid #ef3340;
+			background-color: #ce2a31;
+			background-image: linear-gradient(#ef3340, #ed1b2a), linear-gradient(270deg, hsla(0, 0%, 100%, 0.5), #ef3340);
+
+			.button {
+				padding: 0 1.5em;
+
+				br,
+				p {
+					display: none;
+				}
+			}
+		}
+
+		button {
+			border: none;
+			color: #fff;
+			background: transparent;
+			box-shadow: none;
+			cursor: pointer;
+			appearance: none;
+		}
+
+		.button {
+			padding: 0;
+			border: none;
+			border: 1px solid #ef3340;
+			background-color: #ce2a31;
+			background-image: linear-gradient(#ef3340, #ed1b2a), linear-gradient(270deg, hsla(0, 0%, 100%, 0.5), #ef3340);
+			box-shadow: none;
+		}
+	}
+
 	.bg-yellow {
 		background-color: #f0ede3;
 	}
 
 	.fill1 {
+		padding: 20px !important;
 		background-color: #fcfbf9;
+		text-align: center;
 	}
 
 	.content-container {
-		max-width: 100%;
-		max-width: 79rem;
+		max-width: none;
 		margin: 0 auto;
 
 		&.container-narrow {

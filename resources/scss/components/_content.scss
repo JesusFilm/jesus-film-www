@@ -37,6 +37,10 @@
 		@include margin(null auto);
 	}
 
+	.template-blank & {
+		margin: 0;
+	}
+
 	.full-width-content & {
 	}
 

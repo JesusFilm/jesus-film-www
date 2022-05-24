@@ -185,6 +185,10 @@
 
 			}
 		}
+
+		ul:not([class]) {
+			margin-left: 2em;
+		}
 	}
 
 	// Entry footer.
