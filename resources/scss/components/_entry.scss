@@ -170,22 +170,11 @@
 	// Entry content.
 	&-content {
 
-		p,
-		pre {
-
-			.single & {
-				color: rgba($color--black, 0.8);
-				line-height: 1.67;
-				letter-spacing: -0.2px;
-			}
-
-			.single &:not([class*="-font-size"]) {
-				font-size: $font-size--medium;
-			}
-
-			&:last-of-type {
-
-			}
+		.single & {
+			color: rgba($color--black, 0.8);
+			font-size: $font-size--medium;
+			line-height: 1.67;
+			letter-spacing: -0.2px;
 		}
 
 		ul:not([class]) {

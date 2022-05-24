@@ -27,7 +27,13 @@ $font-sizes: (
 	h4: $font-size--h4,
 	h5: $font-size--h5,
 	h6: $font-size--h6,
+	"small": 12px,
+	"regular": $base--font-size,
 	"medium": $font-size--medium,
+	"large": 30px,
+	"huge": 50px,
+	"gigantic": 90px,
+	"enormous": 100px
 );
 
 // Font families

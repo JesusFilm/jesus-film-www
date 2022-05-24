@@ -445,6 +445,24 @@
 
 	// Quote block.
 	&-quote {
+
+		&,
+		&.is-style-large {
+			padding-left: 4rem;
+			border: none;
+			font-style: normal;
+		}
+
+		&.is-style-large {
+
+			p {
+				font-size: $base--font-size * $golden;
+			}
+		}
+
+		cite:before {
+			content: "\2014\00a0";
+		}
 	}
 
 	// Separator block.
