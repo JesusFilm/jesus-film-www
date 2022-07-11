@@ -3,7 +3,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @use "sass:math";
@@ -77,7 +77,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin hover-focus {
@@ -95,7 +95,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin border( $values ) {
@@ -108,7 +108,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin overlay {
@@ -129,7 +129,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin transition {
@@ -141,7 +141,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin heading {
@@ -156,7 +156,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin box {
@@ -178,7 +178,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin more-link {
@@ -213,7 +213,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin card {
@@ -334,7 +334,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin notice($color: "medium") {
@@ -354,7 +354,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin icon($glyph: "\f005", $font_weight: 400) {
@@ -368,7 +368,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 @mixin subheading {
 	color: rgba($color--black, 0.4);
@@ -386,7 +386,7 @@
 ///
 /// @group  Tools
 /// @author David Jensen <david@dkjensen.com>
-/// @link   https://github.com/dkjensen/jesus-film-project
+/// @link   https://github.com/JesusFilm/jesus-film-www
 ////
 
 @mixin button {

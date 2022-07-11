@@ -1,5 +1,5 @@
 {
-  "name": "dkjensen/jesus-film-project",
+  "name": "jesusfilm/jesus-film-www",
   "type": "wordpress-theme",
   "description": "Default theme for jesusfilm.org",
   "keywords": [
@@ -16,8 +16,8 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/dkjensen/jesus-film-project/issues",
-    "source": "https://github.com/dkjensen/jesus-film-project"
+    "issues": "https://github.com/JesusFilm/jesus-film-www/issues",
+    "source": "https://github.com/JesusFilm/jesus-film-www"
   },
   "require": {
     "php": ">=5.6"
