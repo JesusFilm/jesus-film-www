@@ -1,6 +1,8 @@
 <?php
 /**
  * Template Name: Blank
+ * 
+ * Template Post Type: page, development, messages, espanol
  *
  * @package   Dkjensen\JesusFilmProject
  * @link      https://dkjensen.com

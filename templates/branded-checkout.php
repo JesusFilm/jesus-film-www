@@ -2,7 +2,7 @@
 /**
  * Template Name: Branded Checkout
  *
- * Template Post Type: page, development, messages
+ * Template Post Type: page, development, messages, espanol
  *
  * @package   Dkjensen\JesusFilmProject
  * @link      https://dkjensen.com

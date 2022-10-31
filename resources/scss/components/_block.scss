@@ -90,6 +90,7 @@
 
 	// Columns block.
 	&-columns {
+		gap: 0 !important;
 		margin-bottom: $gutter;
 
 		@include mq($until: m) {
