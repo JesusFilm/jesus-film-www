@@ -36,14 +36,14 @@ function do_404() {
 		array(
 			'open'    => '<h1 %s>',
 			'close'   => '</h1>',
-			'content' => \apply_filters( 'genesis_404_entry_title', __( 'Not found, error 404', 'genesis' ) ),
+			'content' => \apply_filters( 'genesis_404_entry_title', __( 'Not found, error 404', 'jesus-film-project' ) ),
 			'context' => 'entry-title',
 		)
 	);
 
 	$genesis_404_content = sprintf(
 		/* translators: %s: URL for current website. */
-		__( 'The page you are looking for no longer exists. Perhaps you can return back to the <a href="%s">homepage</a> and see if you can find what you are looking for. Or, you can try finding it by using the search form below.', 'genesis' ),
+		__( 'The page you are looking for no longer exists. Perhaps you can return back to the <a href="%s">homepage</a> and see if you can find what you are looking for. Or, you can try finding it by using the search form below.', 'jesus-film-project' ),
 		\esc_url( \trailingslashit( \home_url() ) )
 	);
 

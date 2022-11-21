@@ -51,7 +51,10 @@
     "preferred-install": {
       "*": "dist"
     },
-    "sort-order": true
+    "sort-order": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

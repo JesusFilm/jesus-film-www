@@ -1,11 +1,5 @@
 #!/bin/sh
 
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied"
-    exit
-fi
-
 THEME_SLUG="jesus-film-www"
 PROJECT_PATH="."
 BUILD_PATH="./build"
@@ -30,9 +24,6 @@ npm run i18n || exit "$?"
 
 echo "Syncing files..."
 rsync -rc --exclude-from="$PROJECT_PATH/.distignore" "$PROJECT_PATH/" "$DEST_PATH/" --delete --delete-excluded
-
-echo "Replacing version numbers..."
-sed -i "s/0.0.0-development/$1/" "$DEST_PATH/style.css"
 
 echo "Generating zip file..."
 cd "$BUILD_PATH" || exit
