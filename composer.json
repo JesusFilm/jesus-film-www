@@ -22,23 +22,16 @@
   "require": {
     "php": ">=5.6"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/seothemes/genesis-config-exporter"
-    }
-  ],
   "require-dev": {
     "brain/monkey": "^2.2",
     "dealerdirect/phpcodesniffer-composer-installer": "v0.7.1",
     "phpcompatibility/phpcompatibility-wp": "2.1.1",
-    "phpunit/phpunit": "~5.7.9",
-    "seothemes/genesis-config-exporter": "@dev",
-    "squizlabs/php_codesniffer": "^3.6.0",
+    "phpunit/phpunit": "^8",
+    "squizlabs/php_codesniffer": "^3.7.1",
     "wp-coding-standards/wpcs": "^2.3.0",
     "wp-phpunit/wp-phpunit": "^5.7.2",
     "php-stubs/woocommerce-stubs": "^5.3",
-    "automattic/vipwpcs": "^2.3",
+    "automattic/vipwpcs": "^2.3.3",
     "php-stubs/wordpress-stubs": "^5.9"
   },
   "autoload-dev": {

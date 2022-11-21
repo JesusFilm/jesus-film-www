@@ -79,6 +79,7 @@ namespace Dkjensen\JesusFilmProject;
 		'shortcodes/widget-area',
 		'shortcodes/post-author-box',
 		'shortcodes/share-post',
+		'shortcodes/completed-languages',
 
 		// Plugins.
 		'plugins/gravity-forms',
