@@ -71,3 +71,6 @@ function front_page_body_class( $classes ) {
 
 	return $classes;
 }
+
+\remove_action( 'wp_head', 'genesis_header_scripts' );
+add_action( 'wp_head', 'genesis_header_scripts', -1000 );
