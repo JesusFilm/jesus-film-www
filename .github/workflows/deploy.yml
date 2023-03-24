@@ -54,5 +54,5 @@ jobs:
           destination-github-username: 'wpcomvip'
           destination-repository-name: 'cru-www-jesusfilm-org'
           user-email: david@dkjensen.com
-          target-branch: master
+          target-branch: develop
           target-directory: themes/jesus-film-www
