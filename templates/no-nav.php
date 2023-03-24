@@ -2,7 +2,7 @@
 /**
  * Template Name: No Navigation
  *
- * Template Post Type: page, development, messages, espanol
+ * Template Post Type: post, page, news, development, messages, espanol, email, knowingjesus, passionpurpose
  *
  * @package   Dkjensen\JesusFilmProject
  * @link      https://dkjensen.com

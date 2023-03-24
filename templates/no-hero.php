@@ -2,7 +2,7 @@
 /**
  * Template Name: No Hero
  *
- * Template Post Type: post, page, product, portfolio
+ * Template Post Type: post, page, news, development, messages, espanol, email, knowingjesus, passionpurpose
  *
  * @package   Dkjensen\JesusFilmProject
  * @link      https://dkjensen.com
