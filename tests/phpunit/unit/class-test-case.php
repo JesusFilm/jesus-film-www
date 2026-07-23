@@ -29,7 +29,7 @@ abstract class Test_Case extends TestCase {
 	 *
 	 * @return void
 	 */
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
 	}
@@ -41,7 +41,7 @@ abstract class Test_Case extends TestCase {
 	 *
 	 * @return void
 	 */
-	protected function tearDown() {
+	protected function tearDown(): void {
 		Monkey\tearDown();
 		parent::tearDown();
 	}

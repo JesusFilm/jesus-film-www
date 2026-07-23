@@ -20,7 +20,7 @@ use function Dkjensen\JesusFilmProject\Functions\get_theme_dir;
  *
  * @package KnowTheCode\StarterPlugin\Tests\PHP\Unit
  */
-class Helpers extends Test_Case {
+abstract class Helpers extends Test_Case {
 
 	/**
 	 * Setup test case.
@@ -29,7 +29,7 @@ class Helpers extends Test_Case {
 	 *
 	 * @return void
 	 */
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		require_once CHILD_THEME_LIB_DIR . 'functions/helpers.php';
