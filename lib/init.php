@@ -59,6 +59,7 @@ namespace Dkjensen\JesusFilmProject;
 		'functions/user-meta',
 		'functions/query',
 		'functions/admin',
+		'functions/robots',
 
 		// Structure.
 		'structure/archive',
@@ -86,3 +87,5 @@ namespace Dkjensen\JesusFilmProject;
 		'plugins/woocommerce',
 	)
 );
+
+\Dkjensen\JesusFilmProject\Functions\register_robots_filters();
